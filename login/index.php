@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>Sign in & Sign up Form</title>
 </head>
 
@@ -26,8 +26,8 @@
                         <i class="fas fa-lock"></i>
                         <input type="password" id="password" placeholder="Password" required />
                     </div>
-                    <a href="">Forget Password?</a>
-                    <button type="button" onclick="submitData" class="btn solid">login</button>
+                    <!-- <a href="">Forget Password?</a> -->
+                    <button type="button" onclick="submitData('signin');" class="btn solid">login</button>
 
                 </form>
 
@@ -50,7 +50,7 @@
                         <i class="fas fa-lock"></i>
                         <input type="password" id="confirm" placeholder="Confirm Password" />
                     </div>
-                    <input type="submit" onclick="submitData" class="btn" value="Sign up" />
+                    <input type="submit" onclick="submitData('signup');" class="btn" value="Sign up" />
 
                 </form>
             </div>
@@ -85,6 +85,8 @@
             </div>
         </div>
     </div>
+
+    <?php require 'script.php'; ?>
     <script src="app.js"></script>
 </body>
 
