@@ -1,4 +1,5 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
 <script type="text/javascript">
     function submitData(action) {
 
@@ -15,12 +16,17 @@
 
             };
             console.log(data);
-            console.log(data.password);
+            console.log(password);
 
             $.ajax({
                 url: 'function.php',
                 type: 'post',
                 data: data,
+                success: function(response) {
+                    console.log(data);
+
+
+                }
             });
         });
     }
