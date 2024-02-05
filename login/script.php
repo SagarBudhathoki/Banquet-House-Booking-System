@@ -25,7 +25,17 @@
                 success: function(response) {
                     console.log(data);
 
+                    if (response == "User Login Successful") {
 
+                        window.location.href = "http://localhost/Banquet-house/frontend/mainpage/index.php";
+                    } else if (response == "user not registered") {
+                        alert(response);
+                    } else if (response == 1) {
+                        alert(response);
+                        window.location.href = "index.php";
+                    } else {
+                        alert(response);
+                    }
                 }
             });
         });
