@@ -64,7 +64,6 @@
         <div class="content">
             <h3>THE BANQUET HOUSE</h3>
             <p>Where every occasion becomes a cherished memory</p>
-            <a href="../mainpage/viewall/allbanquets.php" class="btn">discover more</a>
         </div>
 
         <div class="controls">
@@ -153,7 +152,7 @@
             <span>s</span>
         </h1>
 
-        <!-- Add your banquets section content here -->
+
 
     </section>
 
@@ -203,7 +202,7 @@
                 <a href="#">github</a>
             </div>
         </div>
-        <h1 class="credit">created by<span> GoFFy Guys</span> | all right reserved !</h1>
+        <h1 class="credit">created by<span> Herald College</span> | all right reserved !</h1>
     </section>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
