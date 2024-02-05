@@ -64,22 +64,30 @@
         <div class="content">
             <h3>THE BANQUET HOUSE</h3>
             <p>Where every occasion becomes a cherished memory</p>
-            <a class="btn">discover more</a>
+            <a href="../mainpage/viewall/allbanquets.php" class="btn">discover more</a>
         </div>
 
-        <!-- <div class="controls">
-            <span class="vid-btn active" data-src="images/vid-2.mp4"></span> 
-             <span class="vid-btn" data-src="images/vid-1.mp4"></span>
-        </div> -->
+        <div class="controls">
+            <span class="vid-btn active" data-src="images/vid-2.mp4"></span>
+            <span class="vid-btn" data-src="images/vid-1.mp4"></span>
+        </div>
 
-        <!-- <div class="video-container">
-           <video src="images/vid-2.mp4" id="video-slider" loop autoplay muted></video> 
-        </div> -->
+        <div class="video-container">
+            <video src="images/vid-2.mp4" id="video-slider" loop autoplay muted></video>
+        </div>
 
     </section>
 
     <!-- user profile -->
-    <!-- The user profile section is removed for simplicity -->
+    <div id="profile-modal">
+        <div id="profile-modal-content">
+            <div id="profile-modal-close">&times;</div>
+            <div id="profile-info">
+                <h1>User <span style="color:#007aff;">Profile</span></h1>
+
+            </div>
+        </div>
+    </div>
 
     <!-- book section ends -->
     <section class="packages" id="packages">
@@ -107,23 +115,29 @@
         </h1>
         <div class="image-collection" id="venue">
             <div class="image-item">
+                <img src="./uploads/wedding.jpg" alt="Image 1">
                 <div class="image-text">
                     <h3>Wedding</h3>
                 </div>
             </div>
             <div class="image-item">
+                <img src="./uploads/conference.jpg" alt="Image 2">
                 <div class="image-text">
                     <h3>Conference</h3>
+                    <!-- <p>Image 2 description goes here</p> -->
                 </div>
             </div>
             <div class="image-item">
+                <img src="./uploads/63f784bfe1a3e0.12268603.jpg" alt="Image 3">
                 <div class=" image-text">
                     <h3>Others</h3>
+                    <!-- <p>Image 3 description goes here</p> -->
                 </div>
             </div>
+            <!-- add more image items here -->
         </div>
-    </section>
 
+    </section>
     <!-- our venue section ends here -->
 
     <section class="packages" id="banquetshouse">
@@ -138,24 +152,9 @@
             <span>t</span>
             <span>s</span>
         </h1>
-        <div class="box-container">
-            <div class="box">
-                <div class="content">
-                    <h3>Sample Banquet <p>100 Guests</p>
-                    </h3>
-                    <h3> <i class="fas fa-map-marker-alt"></i> Sample Address</h3>
-                    <p>Sample details about the banquet.</p>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <a href="#" class="btn">View More</a>
-                </div>
-            </div>
-        </div>
+
+        <!-- Add your banquets section content here -->
+
     </section>
 
     <section class="Location" id="location">
@@ -170,20 +169,20 @@
             <span>N</span>
             <span>S</span>
         </h1>
-        <div id="map" style="height: 500px; margin-top: 50px; z-index:0;"></div>
     </section>
 
     <!-- footer section -->
+
     <section class="footer">
         <div class="box-container">
             <div class="box">
                 <h3>about us</h3>
-                <p>Herald College is an educational institution that offers a variety of academic programs.
-                    If you are looking for detailed and up-to-date information about this specific Herald College,
-                    I recommend checking their official website or contacting them directly.</p>
+                <p>Herald College Kathmandu (HCK) provides the best UK university education at most affordable fees.
+                    It offers Bachelor Degrees in IT and Business in
+                    direct partnership with the University of Wolverhampton, UK.</p>
             </div>
             <div class="box">
-                <h3>Available Locations</h3>
+                <h3>Avilabe Locations</h3>
                 <a href="#">Kathmandu</a>
                 <a href="#">Pokhara</a>
                 <a href="#">Dharan</a>
@@ -204,7 +203,7 @@
                 <a href="#">github</a>
             </div>
         </div>
-        <h1 class="credit">created by<span> Herald College</span> | all right reserved !</h1>
+        <h1 class="credit">created by<span> GoFFy Guys</span> | all right reserved !</h1>
     </section>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
@@ -212,17 +211,23 @@
     <script src="script.js"></script>
     <script>
         function toggleProfileModal() {
-            swal({
-                title: "Login To View Your Profile",
-                text: "Do you want to go to the login page?",
-                icon: "warning",
-                buttons: ["Cancel", "Login"],
-                className: "custom-alert-box",
-            }).then((value) => {
-                if (value) {
-                    window.location.href = "../../login/index.php";
-                }
-            });
+            // Check if the user is logged in
+            <?php if (isset($_SESSION['user_id'])) { ?>
+                var profileModal = document.getElementById("profile-modal");
+                profileModal.style.display = profileModal.style.display === "block" ? "none" : "block";
+            <?php } else { ?>
+                swal({
+                    title: "Login To View Your Profile",
+                    text: "Do you want to go to the login page?",
+                    icon: "warning",
+                    buttons: ["Cancel", "Login"],
+                    className: "custom-alert-box",
+                }).then((value) => {
+                    if (value) {
+                        window.location.href = "../../login/index.php";
+                    }
+                });
+            <?php } ?>
         }
     </script>
 
