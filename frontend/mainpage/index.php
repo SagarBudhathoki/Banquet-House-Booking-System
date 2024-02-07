@@ -1,3 +1,6 @@
+<?php
+require '/xampp/htdocs/banquet-house-main/connection/config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,16 +81,43 @@
     </section>
 
     <!-- user profile -->
-    <div id="profile-modal">
-        <div id="profile-modal-content">
-            <div id="profile-modal-close">&times;</div>
-            <div id="profile-info">
-                <h1>User <span style="color:#007aff;">Profile</span></h1>
+    <?php if (isset($_SESSION['user_id'])) {
+        $user_id = $_SESSION['user_id'];
+        $profile = mysqli_query($conn, "SELECT * FROM user where id=$user_id");
+        $profileresult = mysqli_fetch_assoc($profile);
+        $selectimg = mysqli_query($conn, "SELECT * FROM `profile` where user_id=$user_id");
+        $fetchimg = mysqli_fetch_assoc($selectimg);
+    ?>
+        <div id="profile-modal">
+            <div id="profile-modal-content">
+                <div id="profile-modal-close">&times;</div>
+                <div id="profile-info">
+                    <h1>User <span style="color:#007aff;">Profile</span></h1>
+                    <?php
+                    if (empty($fetchimg['profile'])) {
+                    ?>
+                        <img src="../../profileimage/profile.png" alt="default profile">
+                    <?php
+                    } else {
+                    ?>
+                        <img src="../../profileimage/<?php echo $fetchimg['profile']; ?>" alt="default profile">
+                    <?php
+                    }
+                    ?>
+                    <h3><?php echo $profileresult['name'] ?></h3>
+                    <div class=" edit-profile">
+                        <button class="profile-edit" onclick="location.href='#'">Edit
+                            Profile</button>
+                    </div>
 
+                    <h2>have a banquet to register your banquet</h2>
+                    </a> <a href="logout.php" id="userlogout"><i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-
+    <?php }
+    ?>
     <!-- book section ends -->
     <section class="packages" id="packages">
         <div id="search-results"></div>
@@ -181,7 +211,7 @@
                     direct partnership with the University of Wolverhampton, UK.</p>
             </div>
             <div class="box">
-                <h3>Avilabe Locations</h3>
+                <h3>Availabe Locations</h3>
                 <a href="#">Kathmandu</a>
                 <a href="#">Pokhara</a>
                 <a href="#">Dharan</a>
