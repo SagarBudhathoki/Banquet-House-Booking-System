@@ -1,5 +1,5 @@
 <?php
-require '/xampp/htdocs/banquet-house-main/connection/config.php';
+require '/xampp/htdocs/Banquet-house/connection/config.php';
 
 if (isset($_POST["action"])) {
     if ($_POST["action"] == "signup") {
@@ -15,8 +15,8 @@ function signup()
     global $conn;
     $name = mysqli_real_escape_string($conn, $_POST['username']);
     $email = mysqli_real_escape_string($conn, $_POST['useremail']);
-    $password = mysqli_real_escape_string($conn, ($_POST['password']));
-    $confirm =  mysqli_real_escape_string($conn, ($_POST['confirm']));
+    $password = mysqli_real_escape_string($conn, md5($_POST['password']));
+    $confirm =  mysqli_real_escape_string($conn, md5($_POST['confirm']));
     $duplicate = mysqli_query($conn, "SELECT * FROM user WHERE name = '$name' OR email = '$email'");
     if (mysqli_num_rows($duplicate) > 0) {
         echo "username or email already taken";
@@ -38,7 +38,7 @@ function signin()
 {
     global $conn;
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, ($_POST['password1']));
+    $password = mysqli_real_escape_string($conn, md5($_POST['password1']));
     $result = mysqli_query($conn, "SELECT * FROM user WHERE email= '$email'");
     $row = mysqli_fetch_assoc($result);
     if (mysqli_num_rows($result) > 0) {
