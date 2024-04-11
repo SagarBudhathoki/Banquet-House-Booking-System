@@ -51,12 +51,7 @@
                         <input type="password" id="confirm" placeholder="Confirm Password" />
                     </div>
                     <input type="submit" onclick="submitData('signup');" class="btn" value="Sign up" />
-                    <!-- <p class="social-text">Or Sign up with social platforms</p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i class="fab fa-github"></i>
-              </a>
-            </div> -->
+
                 </form>
             </div>
         </div>

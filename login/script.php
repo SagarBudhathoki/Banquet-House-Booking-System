@@ -25,9 +25,16 @@
                 success: function(response) {
                     console.log(data);
 
-                    if (response == "User Login Successful") {
+                    if (response == "Admin Login Successful") {
+                        window.location.href =
+                            "http://localhost/banquet-house-main/admin/pages/dashboard/index.php";
+
+                    } else if (response == "User Login Successful") {
 
                         window.location.href = "http://localhost/Banquet-house/frontend/mainpage/index.php";
+                    } else if (response == "super admin login sucessful") {
+                        window.location.href =
+                            "http://localhost/Banquet-house/superadmin/pages/dashboard/index.php";
                     } else if (response == "user not registered") {
                         alert(response);
                     } else if (response == 1) {

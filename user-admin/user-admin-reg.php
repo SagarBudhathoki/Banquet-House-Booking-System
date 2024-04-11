@@ -1,10 +1,6 @@
 <?php
-require '/xampp/htdocs/banquet-house-main/connection/config.php';
+require '/xampp/htdocs/Banquet-house/connection/config.php';
 $user_id = $_SESSION['user_id'];
-
-if (!isset($user_id)) {
-    header('location:../../login/login.php');
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">

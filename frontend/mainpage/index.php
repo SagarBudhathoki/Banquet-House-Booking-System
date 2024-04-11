@@ -36,9 +36,13 @@ require '/xampp/htdocs/Banquet-house/connection/config.php';
         <a href="#home" class="logo"><span>BANQUET</span>HOUSE</a>
 
         <nav class="navbar">
+            <!-- <a href="#home">home</a> -->
             <a href="#venue">Venue</a>
             <a href="#banquetshouse">Banquets</a>
             <a href="#location">Locations</a>
+            <!-- <a href="#gallery">gallery</a>
+            <a href="#review">review</a>
+            <a href="#contact">contact</a> -->
         </nav>
 
         <div class="icons">
@@ -57,6 +61,23 @@ require '/xampp/htdocs/Banquet-house/connection/config.php';
 
     <!-- login form container  -->
 
+    <div class="login-form-container">
+
+        <i class="fas fa-times" id="form-close"></i>
+
+        <!-- <form action="">
+            <h3>login</h3>
+            <input type="email" class="box" placeholder="enter your email">
+            <input type="password" class="box" placeholder="enter your password">
+            <input type="submit" value="login now" class="btn">
+            <input type="checkbox" id="remember">
+            <label for="remember">remember me</label>
+            <p>forget password? <a href="#">click here</a></p>
+            <p>don't have and account? <a href="#">register now</a></p>
+        </form> -->
+
+    </div>
+
     <!-- home section starts  -->
 
     <section class="home" id="home">
@@ -70,6 +91,9 @@ require '/xampp/htdocs/Banquet-house/connection/config.php';
         <div class="controls">
             <span class="vid-btn active" data-src="images/vid-2.mp4"></span>
             <span class="vid-btn" data-src="images/vid-1.mp4"></span>
+            <!-- <span class="vid-btn" data-src="images/vid-2.mp4"></span> -->
+            <!-- <span class="vid-btn" data-src="images/vid-4.mp4"></span> 
+            <span class="vid-btn" data-src="images/vid-5.mp4"></span> -->
         </div>
 
         <div class="video-container">
@@ -155,14 +179,13 @@ require '/xampp/htdocs/Banquet-house/connection/config.php';
             </div>
             <div class="image-item">
                 <img src="./uploads/63f784bfe1a3e0.12268603.jpg" alt="Image 3" onclick="location.href='venue.php?type=other';">
-                <div class="image-text">
+                <div class=" image-text">
                     <h3>Others</h3>
                     <!-- <p>Image 3 description goes here</p> -->
                 </div>
             </div>
-            <!-- Add more image items here -->
+            <!-- add more image items here -->
         </div>
-
 
 
     </section>
@@ -182,47 +205,63 @@ require '/xampp/htdocs/Banquet-house/connection/config.php';
             <span>s</span>
         </h1>
         <div class="box-container">
-            <div class="box">
-                <img src="./uploads/wedding.jpg" alt="Banquet 1">
-                <div class="content">
-                    <h3>Banquet Name 1</h3>
-                    <p>Capacity: 100 Guests</p>
-                    <h3><i class="fas fa-map-marker-alt"></i> Address 1</h3>
-                    <p>Details about the first banquet.</p>
-                    <div class="stars">
-                        <!-- Star rating icons can be added here -->
-                    </div>
-                    <a href="#" class="btn">View More</a>
-                </div>
-            </div>
+            <?php
+            $rows = mysqli_query($conn, "SELECT map.*, banquet.*, AVG(review.rating) as average_rating 
+      FROM map
+      JOIN banquet ON map.admin_id = banquet.admin_id
+      LEFT JOIN review ON map.admin_id = review.admin_id
+      WHERE banquet.status = 'active'   
+      GROUP BY map.admin_id
+      ORDER BY map.admin_id
+      LIMIT 3;");
 
-            <div class="box">
-                <img src="./uploads/wedding.jpg" alt="Banquet 2">
-                <div class="content">
-                    <h3>Banquet Name 2</h3>
-                    <p>Capacity: 150 Guests</p>
-                    <h3><i class="fas fa-map-marker-alt"></i> Address 2</h3>
-                    <p>Details about the second banquet.</p>
-                    <div class="stars">
-                        <!-- Star rating icons can be added here -->
-                    </div>
-                    <a href="#" class="btn">View More</a>
-                </div>
-            </div>
+            $count = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM banquet where status='active'"));
+            foreach ($rows as $row) :
+                if ($row['status'] !== 'pending' && $row['status'] !== 'deactive') {
+                    $address_parts = explode(',', $row['address']);
+                    $address = trim($address_parts[0]);
+            ?>
+                    <div class="box">
+                        <img src="../../user-admin/uploads/<?php echo $row["image"]; ?>" alt="">
+                        <div class="content">
+                            <h3><?php echo $row["banquetname"]; ?> <p><?php echo $row["capacity"]; ?> Guests</p>
+                            </h3>
 
-            <div class="box">
-                <img src="./uploads/wedding.jpg" alt="Banquet 3">
-                <div class="content">
-                    <h3>Banquet Name 3</h3>
-                    <p>Capacity: 120 Guests</p>
-                    <h3><i class="fas fa-map-marker-alt"></i> Address 3</h3>
-                    <p>Details about the third banquet.</p>
-                    <div class="stars">
-                        <!-- Star rating icons can be added here -->
+                            <h3> <i class="fas fa-map-marker-alt"></i> <?php echo $address; ?></h3>
+                            <p><?php echo $row["details"]; ?></p>
+
+                            <div class="stars">
+                                <?php
+                                // Show average rating as stars
+                                $avg_rating = $row['average_rating'];
+                                $full_stars = floor($avg_rating);
+                                $half_star = round($avg_rating - $full_stars, 1);
+                                $empty_stars = 5 - $full_stars - $half_star;
+                                for ($i = 0; $i < $full_stars; $i++) {
+                                    echo '<i class="fas fa-star"></i>';
+                                }
+                                if ($half_star == 0.5) {
+                                    echo '<i class="fas fa-star-half-alt"></i>';
+                                }
+                                for ($i = 0; $i < $empty_stars; $i++) {
+                                    echo '<i class="far fa-star"></i>';
+                                }
+                                ?>
+                            </div>
+                            <!-- <div class="price"> $90.00 <span>$120.00</span> </div> -->
+                            <a href="../landingpage/home.php?page_id=<?php echo $row["admin_id"]; ?>" class="btn">View
+                                More</a>
+                        </div>
                     </div>
-                    <a href="#" class="btn">View More</a>
-                </div>
-            </div>
+                <?php
+                }
+            endforeach;
+            if ($count > 3) {
+                ?>
+                <button class="view-more" onclick="location.href='./viewall/allbanquets.php';">View All</button>
+            <?php
+            }
+            ?>
         </div>
 
     </section>
@@ -246,7 +285,7 @@ require '/xampp/htdocs/Banquet-house/connection/config.php';
         <div class="box-container">
             <div class="box">
                 <h3>about us</h3>
-                <p>GoFFy Guys is a team of Herald College students who created this website for their academic
+                <p>GoFFy Guys is a team of Kantipur City College students who created this website for their academic
                     requirements. The website provides information on programming, web development, and computer
                     science. Their goal is to provide accurate and useful information.</p>
             </div>
