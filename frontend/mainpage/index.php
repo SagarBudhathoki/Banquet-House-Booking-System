@@ -44,7 +44,6 @@ require '/xampp/htdocs/Banquet-house/connection/config.php';
             <a href="#review">review</a>
             <a href="#contact">contact</a> -->
         </nav>
-
         <div class="icons">
             <i class="fas fa-search" id="search-btn"></i>
             <button id="login-btn" style="background: transparent;" onclick="toggleProfileModal()"><i class="fas fa-user"></i></button>
@@ -341,7 +340,6 @@ require '/xampp/htdocs/Banquet-house/connection/config.php';
             <?php } ?>
         }
     </script>
-
 </body>
 
 </html>
