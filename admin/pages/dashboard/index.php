@@ -1,11 +1,3 @@
-<?php
-require '/xampp/htdocs/Banquet-house/connection/config.php';
-$admin_id = $_SESSION['admin_id'];
-
-if (!isset($admin_id)) {
-    header('location:../../../login/index.php');
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,9 +16,7 @@ if (!isset($admin_id)) {
 
 <body>
     <div class="sidebar close">
-        <?php
-        include '../sidebar/sidebar.php';
-        ?>
+        <!-- <php include '../sidebar/sidebar.php'; ?> -->
     </div>
     <section class="home-section">
         <div class="home-content">
@@ -37,18 +27,7 @@ if (!isset($admin_id)) {
             <div class="cards">
                 <div class="card">
                     <div class="card-content">
-                        <?php
-                        $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM tbservice where adminid='$admin_id'");
-
-                        ?>
-                        <div class="number"><?php if ($result->num_rows > 0) {
-                                                $row = $result->fetch_assoc();
-                                                $total_services = $row['total'];
-                                                echo $total_services;
-                                            } else {
-                                                echo "0";
-                                            }
-                                            ?></div>
+                        <div class="number"></div>
                         <div class="card-name">Services</div>
                     </div>
                     <div class="icon-box">
@@ -57,18 +36,8 @@ if (!isset($admin_id)) {
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <?php
-                        $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM images where admin_id='$admin_id'");
-                        ?>
-                        <div class="number"><?php if ($result->num_rows > 0) {
-                                                $row = $result->fetch_assoc();
-                                                $total_image = $row['total'];
-                                                echo $total_image;
-                                            } else {
-                                                echo "0";
-                                            }
-                                            ?></div>
-                        <div class="card-name">Gallary</div>
+                        <div class="number"></div>
+                        <div class="card-name">Gallery</div>
                     </div>
                     <div class="icon-box">
                         <i class="fas fa-thin fa-image"></i>
@@ -76,17 +45,7 @@ if (!isset($admin_id)) {
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <?php
-                        $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM Packages where admin_id='$admin_id'");
-                        ?>
-                        <div class="number"><?php if ($result->num_rows > 0) {
-                                                $row = $result->fetch_assoc();
-                                                $total_package = $row['total'];
-                                                echo $total_package;
-                                            } else {
-                                                echo "0";
-                                            }
-                                            ?></div>
+                        <div class="number"></div>
                         <div class="card-name">Packages</div>
                     </div>
                     <div class="icon-box">
@@ -95,17 +54,7 @@ if (!isset($admin_id)) {
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <?php
-                        $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM reservation where admin_id='$admin_id' AND status='pending'");
-                        ?>
-                        <div class="number"><?php if ($result->num_rows > 0) {
-                                                $row = $result->fetch_assoc();
-                                                $total_package = $row['total'];
-                                                echo $total_package;
-                                            } else {
-                                                echo "0";
-                                            }
-                                            ?></div>
+                        <div class="number"></div>
                         <div class="card-name">New Booking</div>
                     </div>
                     <div class="icon-box">
@@ -114,17 +63,7 @@ if (!isset($admin_id)) {
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <?php
-                        $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM reservation where admin_id='$admin_id' AND status='accepted'");
-                        ?>
-                        <div class="number"><?php if ($result->num_rows > 0) {
-                                                $row = $result->fetch_assoc();
-                                                $total_package = $row['total'];
-                                                echo $total_package;
-                                            } else {
-                                                echo "0";
-                                            }
-                                            ?></div>
+                        <div class="number"></div>
                         <div class="card-name">Approved Booking</div>
                     </div>
                     <div class="icon-box">
@@ -133,17 +72,7 @@ if (!isset($admin_id)) {
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <?php
-                        $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM reservation where admin_id='$admin_id' AND status='rejected'");
-                        ?>
-                        <div class="number"><?php if ($result->num_rows > 0) {
-                                                $row = $result->fetch_assoc();
-                                                $total_package = $row['total'];
-                                                echo $total_package;
-                                            } else {
-                                                echo "0";
-                                            }
-                                            ?></div>
+                        <div class="number"></div>
                         <div class="card-name">Rejected Booking</div>
                     </div>
                     <div class="icon-box">
@@ -152,56 +81,24 @@ if (!isset($admin_id)) {
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <?php
-                        $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM query where admin_id='$admin_id' AND STATUS='unread'");
-                        ?>
-                        <div class="number"><?php if ($result->num_rows > 0) {
-                                                $row = $result->fetch_assoc();
-                                                $total_package = $row['total'];
-                                                echo $total_package;
-                                            } else {
-                                                echo "0";
-                                            }
-                                            ?></div>
-                        <div class="card-name">unread Queries</div>
+                        <div class="number"></div>
+                        <div class="card-name">Unread Queries</div>
                     </div>
                     <div class="icon-box">
                         <i class="fa-regular fa-question"></i>
                     </div>
                 </div>
-
-
             </div>
 
             <section class="comments">
                 <h2>User Reviews</h2>
                 <div class="comment-container">
-                    <?php
-                    $reviews = mysqli_query($conn, "SELECT review.*, user.* FROM review JOIN user ON review.user_id = user.id WHERE review.admin_id='$admin_id' ORDER BY review.id DESC LIMIT 4");
-
-                    if (mysqli_num_rows($reviews) > 0) {
-                        while ($review = mysqli_fetch_assoc($reviews)) {
-                    ?>
-                            <div class="user-review">
-                                <h3><?php echo $review['name']; ?></h3>
-                                <p><?php echo $review['comment']; ?></p>
-                                <b>
-                                    <p>Rating: <?php echo $review['rating']; ?>/5</p>
-                                </b>
-                            </div>
-                    <?php
-                        }
-                    } else {
-                        echo "<p>No reviews found.</p>";
-                    }
-                    ?>
+                    <!-- This part will be populated dynamically with PHP -->
                 </div>
             </section>
-
+        </div>
     </section>
-    </div>
-    </section>
+    <script src="../sidebar/script.js"></script>
 </body>
-<script src="../sidebar/script.js"></script>
 
 </html>
