@@ -103,9 +103,9 @@ require '/xampp/htdocs/Banquet-house/connection/config.php';
         <div class="box-container">
             <div class="box">
                 <h3>about us</h3>
-                <p>GoFFy Guys is a team of Kantipur City College students who created this website for their academic
-                    requirements. The website provides information on programming, web development, and computer
-                    science. Their goal is to provide accurate and useful information.</p>
+                <p>I am Sagar Budhathoki currently studying at Heral College Kathmandu.
+                    This is a platform where we can book a banquet house and its venue according to our purpose.
+                    I am very happy to intrtoduce my final year project as a booking system.</p>
             </div>
             <div class="box">
                 <h3>Avilabe Locations</h3>
