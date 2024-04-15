@@ -15,6 +15,9 @@
 
 <body>
     <div class="sidebar close">
+        <?php
+        include '../sidebar/sidebar.html';
+        ?>
     </div>
     <section class="home-section">
         <div class="home-content">
