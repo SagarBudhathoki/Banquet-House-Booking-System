@@ -1,11 +1,3 @@
-<?php
-require '/xampp/htdocs/Banquet-house/connection/config.php';
-$super_id = $_SESSION['super_id'];
-
-if (!isset($super_id)) {
-    header('location:../../../login/index.php');
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
