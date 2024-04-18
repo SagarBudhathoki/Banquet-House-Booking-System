@@ -1,6 +1,10 @@
 <?php
 require '/xampp/htdocs/Banquet-house/connection/config.php';
 $user_id = $_SESSION['user_id'];
+
+if (!isset($user_id)) {
+    header('location:../../login/login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -125,9 +129,10 @@ $user_id = $_SESSION['user_id'];
         <div class="box-container">
             <div class="box">
                 <h3>about us</h3>
-                <p>I am Sagar Budhathoki currently studying at Heral College Kathmandu.
-                    This is a platform where we can book a banquet house and its venue according to our purpose.
-                    I am very happy to intrtoduce my final year project as a booking system.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur adipisci expedita, est
+                    facilis
+                    nisi qui facere nesciunt laudantium quibusdam, repellat nihil, nulla dolorem saepe debitis
+                    reiciendis incidunt. Labore, autem praesentium.</p>
             </div>
             <div class="box">
                 <h3>Avilabe Locations</h3>
@@ -203,39 +208,6 @@ $user_id = $_SESSION['user_id'];
         console.log(formData);
         xhr.send(formData);
     });
-    // document.getElementById('submit').addEventListener('click', function(event) {
-    //             event.preventDefault();
-    //             var latitude = document.getElementById('latitude').value;
-    //             var banquetname = document.getElementById('banquet-name').value;
-    //             var number = document.getElementById('contact-number').value;
-    //             var city = document.getElementById('city').value;
-    //             var longitude = document.getElementById('longitude').value;
-    //             var address = document.getElementById('address').value;
-    //             var detail = document.getElementById('detail').value;
-    //             if (address === '' || detail === '') {
-    //                 alert('Please enter both address and detail');
-    //                 return;
-    //             }
-
-    //     var xhr = new XMLHttpRequest();
-    //     xhr.onreadystatechange = function() {
-    //         if (xhr.readyState === XMLHttpRequest.DONE) {
-    //             if (xhr.status === 200) {
-    //                 alert(xhr.responseText);
-    //             } else {
-    //                 console.log('Error: ' + xhr.status);
-    //             }
-    //         }
-    //     };
-    //     xhr.open('POST', 'save_location.php');
-    //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    //     var data = 'latitude=' + encodeURIComponent(latitude) + '&longitude=' + encodeURIComponent(longitude) +
-    //         '&address=' + encodeURIComponent(address) + '&detail=' + encodeURIComponent(detail) + '&city=' +
-    //         encodeURIComponent(city) + '&banquetname=' + encodeURIComponent(banquetname) + '&number=' +
-    //         encodeURIComponent(number);
-    //     console.log(data);
-    //     xhr.send(data);
-    // });
 </script>
 
 </html>
