@@ -1,0 +1,288 @@
+/* Style the table */
+.container {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+}
+
+#myTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#myTable th,
+#myTable td {
+    text-align: left;
+    padding: 8px;
+}
+
+#myTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#myTable th {
+    background-color: #007aff;
+    color: white;
+}
+
+.status {
+    width: 4rem;
+    border: none;
+    height: 26px;
+}
+
+/* Style the action buttons */
+/* .edit-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .delete-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+  } */
+.active-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.active-button:hover {
+    background-color: #32CD32;
+}
+
+.deactive-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.deactive-button:hover {
+    background-color: #FF6347;
+}
+
+/* pagination */
+.pagination {
+    display: flex;
+    justify-content: left;
+    margin-top: 20px;
+}
+
+.pagination a {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid #469af3;
+    margin: 0 4px;
+}
+
+.pagination a:hover {
+    background-color: #1a6ec9;
+}
+
+.page-link .active {
+    background-color: #007aff;
+    color: white;
+    border: 1px solid #007aff;
+}
+
+/* .pagination a:active {
+    background-color:#007aff;
+    color: white;
+    border: 1px solid #007aff;
+} */
+/* .pagination .active {
+    background-color:#007aff;
+    color: white;
+    border: 1px solid #007aff;
+  } */
+/* Style for search field */
+.search-field {
+    padding: 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 300px;
+    margin-right: 10px;
+}
+
+/* Style for search button */
+.search-button {
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 12px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Hover effect for search button */
+.search-button:hover {
+    background-color: #0069d9;
+}
+
+.filter-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-form label {
+    margin-right: 10px;
+}
+
+.filter-form select {
+    margin-right: 10px;
+}
+
+.filter-form button {
+    margin-left: auto;
+}
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 0.5rem;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+th,
+td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #dddddd;
+}
+
+.edit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.delete {
+    background-color: red;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 0.5rem;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

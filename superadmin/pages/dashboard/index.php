@@ -1,3 +1,11 @@
+<?php
+require '/xampp/htdocs/Banquet-house/connection/config.php';
+$super_id = $_SESSION['super_id'];
+
+if (!isset($super_id)) {
+    header('location:../../../login/index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +24,7 @@
 <body>
     <div class="sidebar close">
         <?php
-        include '../sidebar/sidebar.html';
+        include '../sidebar/sidebar.php';
         ?>
     </div>
     <section class="home-section">
@@ -28,7 +36,18 @@
             <div class="cards">
                 <div class="card">
                     <div class="card-content">
-                        <div class="number"></div>
+                        <?php
+                        $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM banquet where status='active'");
+
+                        ?>
+                        <div class="number"><?php if ($result->num_rows > 0) {
+                                                $row = $result->fetch_assoc();
+                                                $total_services = $row['total'];
+                                                echo $total_services;
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></div>
                         <div class="card-name">Active Owners</div>
                     </div>
                     <div class="icon-box">
@@ -37,7 +56,17 @@
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <div class="number"></div>
+                        <?php
+                        $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM banquet where status='deactive'");
+                        ?>
+                        <div class="number"><?php if ($result->num_rows > 0) {
+                                                $row = $result->fetch_assoc();
+                                                $total_image = $row['total'];
+                                                echo $total_image;
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></div>
                         <div class="card-name">Deactive Owner</div>
                     </div>
                     <div class="icon-box">
@@ -46,7 +75,18 @@
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <div class="number"></div>
+                        <?php
+                        $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM banquet where status='active' OR status='deactive'");
+
+                        ?>
+                        <div class="number"><?php if ($result->num_rows > 0) {
+                                                $row = $result->fetch_assoc();
+                                                $total_services = $row['total'];
+                                                echo $total_services;
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></div>
                         <div class="card-name">Total Owners</div>
                     </div>
                     <div class="icon-box">
@@ -55,7 +95,17 @@
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <div class="number"></div>
+                        <?php
+                        $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM banquet where status='pending'");
+                        ?>
+                        <div class="number"><?php if ($result->num_rows > 0) {
+                                                $row = $result->fetch_assoc();
+                                                $total_package = $row['total'];
+                                                echo $total_package;
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></div>
                         <div class="card-name">Pending</div>
                     </div>
                     <div class="icon-box">
@@ -64,7 +114,17 @@
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <div class="number"></div>
+                        <?php
+                        $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM user where type='user'");
+                        ?>
+                        <div class="number"><?php if ($result->num_rows > 0) {
+                                                $row = $result->fetch_assoc();
+                                                $total_package = $row['total'];
+                                                echo $total_package;
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></div>
                         <div class="card-name">Total Users</div>
                     </div>
                     <div class="icon-box">
@@ -73,7 +133,7 @@
                 </div>
             </div>
     </section>
-    <script src="../sidebar/script.js"></script>
 </body>
+<script src="../sidebar/script.js"></script>
 
 </html>
