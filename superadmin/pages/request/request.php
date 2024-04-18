@@ -1,3 +1,4 @@
+<!-- pending -->
 <?php
 require '/xampp/htdocs/Banquet-house/connection/config.php';
 
