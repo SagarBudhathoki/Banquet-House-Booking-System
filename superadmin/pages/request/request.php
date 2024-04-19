@@ -84,7 +84,7 @@ $rows = mysqli_query($conn, $sql);
             <span class="text">Admin</span>
         </div>
         <div class="container">
-            <h2>Banquet Status</h2>
+            <h2>Banquet Request</h2>
             <br>
             <form method="get" action="">
                 <input type="text" name="search" placeholder="Search.." class="search-field">

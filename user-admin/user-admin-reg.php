@@ -129,13 +129,12 @@ if (!isset($user_id)) {
         <div class="box-container">
             <div class="box">
                 <h3>about us</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur adipisci expedita, est
-                    facilis
-                    nisi qui facere nesciunt laudantium quibusdam, repellat nihil, nulla dolorem saepe debitis
-                    reiciendis incidunt. Labore, autem praesentium.</p>
+                <p>I am Sagar Budhathoki currently studying at Heral College Kathmandu.
+                    This is a platform where we can book a banquet house and its venue according to our purpose.
+                    I am very happy to intrtoduce my final year project as a booking system.</p>
             </div>
             <div class="box">
-                <h3>Avilabe Locations</h3>
+                <h3>Availabe Locations</h3>
                 <a href="#">Kathmandu</a>
                 <a href="#">Pokhara</a>
                 <a href="#">Dharan</a>
