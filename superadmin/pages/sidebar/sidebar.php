@@ -132,7 +132,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
                 <div class="profile_name">Logout</div>
                 <!-- <div class="job">Desginer</div> -->
             </div>
-            <a href="../services/logout.php"> <i class='bx bx-log-out'></i></a>
+            <a href="../../../login/index.php"> <i class='bx bx-log-out'></i></a>
         </div>
     </li>
 </ul>
