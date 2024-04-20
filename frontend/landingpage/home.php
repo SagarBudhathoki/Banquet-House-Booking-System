@@ -30,7 +30,7 @@ if (!empty($_SESSION['user_id']))
 
     <!-- css linked -->
     <link rel="stylesheet" href="css/teststyle.css">
-    <link rel="stylesheet" href="css/reviewstye.css">
+    <link rel="stylesheet" href="css/reviewstyle.css">
 </head>
 
 <body>
@@ -160,7 +160,7 @@ if (!empty($_SESSION['user_id']))
     <!-- pricing section starts here -->
     <section class="pricing" id="pricing">
         <div class="title">
-            <h1><span>Pricing</span> For <span>C</span>Celebration</h1>
+            <h1><span>Pricing</span> For <span>C</span>elebration</h1>
         </div>
         <div class="price-container">
             <?php
