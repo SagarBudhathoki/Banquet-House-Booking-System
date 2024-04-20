@@ -95,8 +95,7 @@ $rows = mysqli_query($conn, $sql);
                         <th>Banquet name</th>
                         <th>City</th>
                         <th>Status</th>
-                        <!-- <th>Action</th> -->
-                        <th></th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
