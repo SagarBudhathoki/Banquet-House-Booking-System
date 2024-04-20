@@ -160,7 +160,7 @@ if (!empty($_SESSION['user_id']))
     <!-- pricing section starts here -->
     <section class="pricing" id="pricing">
         <div class="title">
-            <h1><span>Pricing</span> For <span>C</span>elebration</h1>
+            <h1><span>Pricing</span> For <span>C</span>Celebration</h1>
         </div>
         <div class="price-container">
             <?php
