@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Custom Booking Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Custom Booking Form</h1>
+    <form id="booking-form" onsubmit="return false;">
+        <div id="question-1">
+            <p>What type of event are you organizing?</p>
+            <label>
+                <input type="radio" name="eventtype" value="wedding">
+                Wedding
+            </label>
+            <label>
+                <input type="radio" name="eventtype" value="anniversary">
+                Anniversary
+            </label>
+            <label>
+                <input type="radio" name="eventtype" value="conference">
+                Conference
+            </label>
+            <label>
+                <input type="radio" name="eventtype" value="cooperative">
+                Cooperative
+            </label>
+            <button type="button" onclick="showNextQuestion(1)">Next</button>
+        </div>
+        <div id="question-2" style="display: none;">
+            <p>How many guests will be attending?</p>
+            <input type="number" name="guests">
+            <button type="button" onclick="showPreviousQuestion(2)">Back</button>
+            <button type="button" onclick="showNextQuestion(2)">Next</button>
+        </div>
+        <div id="question-3" style="display: none;">
+            <p>What type of food would you like to serve?</p>
+            <label>
+                Appetizers
+                <input type="checkbox" name="food" value="yamba prawns">
+                <input type="checkbox" name="food" value="caprese salad">
+                <input type="checkbox" name="food" value="chicken mooshu friters">
+            </label>
+            <label>
+                <input type="checkbox" name="food" value="main-course">
+                Main Course
+            </label>
+            <label>
+                <input type="checkbox" name="food" value="hard-drinks">
+                Hard Drinks
+            </label>
+            <label>
+                <input type="checkbox" name="food" value="soft-drinks">
+                Soft Drinks
+            </label>
+            <label>
+                <input type="checkbox" name="food" value="dessert">
+                Dessert
+            </label>
+            <button type="button" onclick="showPreviousQuestion(3)">Back</button>
+            <button type="button" onclick="showNextQuestion(3)">Next</button>
+        </div>
+        <div id="question-4" style="display: none;">
+            <p>What type of service would you like?</p>
+            <label>
+                <input type="checkbox" name="service" value="buffet">
+                Buffet
+            </label>
+            <label>
+                <input type="checkbox" name="service" value="plated-menu">
+                Plated Menu
+            </label>
+            <label>
+                <input type="checkbox" name="service" value="platter-to-plate">
+                Platter to Plate
+            </label>
+            <button type="button" onclick="showPreviousQuestion(4)">Back</button>
+            <button type="submit" onclick="getBookingOptions()">Submit</button>
+        </div>
+    </form>
+    <script>
+        let currentQuestion = 1;
+
+        function showNextQuestion(questionNumber) {
+            const currentQuestionDiv = document.getElementById('question-' + questionNumber);
+            if (!validateQuestion(currentQuestionDiv)) {
+                return;
+            }
+            currentQuestionDiv.style.display = 'none';
+            currentQuestion++;
+            const nextQuestionDiv = document.getElementById('question-' + currentQuestion);
+            nextQuestionDiv.style.display = 'block';
+        }
+        function showPreviousQuestion(questionNumber) {
+            const currentQuestionDiv = document.getElementById('question-' + questionNumber);
+            currentQuestionDiv.style.display = 'none';
+            currentQuestion--;
+            const previousQuestionDiv = document.getElementById('question-' + currentQuestion);
+            previousQuestionDiv.style.display = 'block';
+        }
+
+        function validateQuestion(questionDiv) {
+            const radioInputs = questionDiv.querySelectorAll('input[type="radio"]');
+            const checkboxInputs = questionDiv.querySelectorAll('input[type="checkbox"]');
+            const numberInput = questionDiv.querySelector('input[type="number"]');
+            let valid = true;
+
+            if (radioInputs.length > 0) {
+                let radioSelected = false;
+                radioInputs.forEach((input) => {
+                    if (input.checked) {
+                        radioSelected = true;
+                    }
+                });
+                if (!radioSelected) {
+                    alert('Please select an option.');
+                    valid = false;
+                }
+            }
+
+            if (checkboxInputs.length > 0) {
+                let checkboxSelected = false;
+                checkboxInputs.forEach((input) => {
+                    if (input.checked) {
+                        checkboxSelected = true;
+                    }
+                });
+                if (!checkboxSelected) {
+                    alert('Please select at least one option.');
+                    valid = false;
+                }
+            }
+
+            if (numberInput) {
+                if (numberInput.value < 1) {
+                    alert('Please enter a valid number of guests.');
+                    valid = false;
+                }
+            }
+
+            return valid;
+        }
+
+        function getBookingOptions() {
+            const form = document.getElementById('booking-form');
+            const formData = new FormData(form);
+            let options = {};
+            for (const entry of formData.entries()) {
+                options[entry[0]] = entry[1];
+            }
+            console.log(options);
+            // Send options to server for processing
+        }
+    </script>
+</body>
+
+</html>
