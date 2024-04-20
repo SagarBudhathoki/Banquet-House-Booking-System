@@ -27,7 +27,7 @@
 
                     if (response == "Admin Login Successful") {
                         window.location.href =
-                            "http://localhost/banquet-house-main/admin/pages/dashboard/index.php";
+                            "http://localhost/Banquet-house/admin/pages/dashboard/index.php";
 
                     } else if (response == "User Login Successful") {
 
