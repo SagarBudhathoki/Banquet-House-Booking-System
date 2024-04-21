@@ -489,7 +489,7 @@ if (!empty($_SESSION['user_id']))
         </div>
         <div class="copy-right">
             <hr>
-            <p>&copy; 2024 GoFFy Guys. All Rights Reserved.</p>
+            <p>&copy; 2024 The Royal Pavilion. All Rights Reserved.</p>
         </div>
     </footer>
     <!-- footer section ends here -->

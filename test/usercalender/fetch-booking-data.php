@@ -1,5 +1,5 @@
 <?php
-require '/xampp/htdocs/Banquet=house/connection/config.php';
+require '/xampp/htdocs/Banquet-house/connection/config.php';
 // Fetch booking data from database
 $id = $_GET['page_id'];
 $result = mysqli_query($conn, "SELECT id, `booking-date` FROM reservation WHERE status='accepted' AND admin_id=$id");
