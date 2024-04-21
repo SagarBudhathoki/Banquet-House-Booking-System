@@ -42,15 +42,15 @@ if (isset($_FILES['profile-image']) && !empty($_FILES['profile-image']['name']))
     $file_ext = strtolower(end($file_name_parts));
 
     $file_name_new = uniqid('', true) . '.' . $file_ext;
-    $file_destination = '/programs/xampp/htdocs/banquethouses/profileimage/' . $file_name_new;
+    $file_destination = '/xampp/htdocs/Banquet-house/profileimage/' . $file_name_new;
 
     // Check if the old image file exists and delete it
     $query = mysqli_query($conn, "SELECT profile FROM `profile` WHERE user_id=$user_id");
     $row = mysqli_num_rows($query);
     if ($row > 0) {
         $old_file = mysqli_fetch_assoc($query)['profile'];
-        if (file_exists('/programs/xampp/htdocs/banquethouses/profileimage/' . $old_file)) {
-            unlink('/programs/xampp/htdocs/banquethouses/profileimage/' . $old_file);
+        if (file_exists('/xampp/htdocs/Banquet-house/profileimage/' . $old_file)) {
+            unlink('/xampp/htdocs/Banquet-house/profileimage/' . $old_file);
         }
         $query = mysqli_query($conn, "UPDATE `profile` SET profile='$file_name_new' WHERE user_id=$user_id");
     } else {
