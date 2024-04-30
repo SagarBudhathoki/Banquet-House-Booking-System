@@ -9,7 +9,7 @@ if (!empty($_SESSION['user_id']))
 
 <head>
     <title>Event Planner Form</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- font awesome cdn link  -->
@@ -74,7 +74,7 @@ if (!empty($_SESSION['user_id']))
                     }
                 }
             </script>
-            <h1>Menue</h1>
+            <h1>Food Menu</h1>
             <h2>1. Appetizers:</h2>
             <fieldset>
                 <ul class="image-checkbox-list">
@@ -124,7 +124,7 @@ if (!empty($_SESSION['user_id']))
                     <?php endwhile; ?>
                 </ul>
             </fieldset>
-            <h2>3. Main-Course:</h2>
+            <h2></h2>
             <fieldset>
                 <ul class="image-checkbox-list">
                     <?php
@@ -149,7 +149,7 @@ if (!empty($_SESSION['user_id']))
                     <?php endwhile; ?>
                 </ul>
             </fieldset>
-            <h2>4. Dessert:</h2>
+            <h2>3. Dessert:</h2>
             <fieldset>
                 <ul class="image-checkbox-list">
                     <?php
@@ -173,7 +173,7 @@ if (!empty($_SESSION['user_id']))
                     <?php endwhile; ?>
                 </ul>
             </fieldset>
-            <h2>5. Hard Drinks:</h2>
+            <h2>4. Hard Drinks:</h2>
             <fieldset>
                 <ul class="image-checkbox-list">
                     <?php
@@ -197,7 +197,7 @@ if (!empty($_SESSION['user_id']))
                     <?php endwhile; ?>
                 </ul>
             </fieldset>
-            <h2>6. soft-drinks:</h2>
+            <h2>5. soft-drinks:</h2>
             <fieldset>
                 <ul class="image-checkbox-list">
                     <?php

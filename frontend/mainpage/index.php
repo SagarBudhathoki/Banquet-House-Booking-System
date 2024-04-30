@@ -276,8 +276,8 @@ require '/xampp/htdocs/Banquet-house/connection/config.php';
             <span>N</span>
             <span>S</span>
         </h1>
-        <!-- <div id="map" style="height: 500px; margin-top: 50px; z-index:0;"></div> -->
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d72926.61372388071!2d85.24819332713236!3d27.70901452057294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307baabf%3A0xb5137c1bf18db1ea!2z4KSV4KS-4KSg4KSu4KS-4KSh4KWM4KSBIDQ0NjAw!5e1!3m2!1sne!2snp!4v1713281604388!5m2!1sne!2snp" width="100%" height="650" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div id="map" style="height: 500px; margin-top: 50px; z-index:0;"></div>
+        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d72926.61372388071!2d85.24819332713236!3d27.70901452057294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307baabf%3A0xb5137c1bf18db1ea!2z4KSV4KS-4KSg4KSu4KS-4KSh4KWM4KSBIDQ0NjAw!5e1!3m2!1sne!2snp!4v1713281604388!5m2!1sne!2snp" width="100%" height="650" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
     </section>
     <!-- footer section -->
 

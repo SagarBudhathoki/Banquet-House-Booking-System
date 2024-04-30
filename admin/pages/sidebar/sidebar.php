@@ -20,7 +20,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
     </li>
     <li>
         <div class="iocn-link">
-            <a href="">
+            <!-- <a href="">
                 <i class='bx bx-collection'></i>
                 <span class="link_name">Services</span>
             </a>
@@ -46,7 +46,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
             <li><a href="#">Manage Packages</a></li>
 
         </ul>
-    </li>
+    </li> -->
     <li>
         <div class="iocn-link">
             <a href="">
@@ -57,11 +57,11 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
         </div>
         <ul class="sub-menu">
             <li><a class="link_name">Images</a></li>
-            <li><a href="#">Featured Images</a></li>
-            <li><a href="#">Gallary</a></li>
+            <!-- <li><a href="#">Featured Images</a></li> -->
+            <li><a href="../images/images.php">Gallary</a></li>
         </ul>
     </li>
-    <li>
+    <!-- <li>
         <div class="iocn-link">
             <a href="#">
                 <i class='bx bx-book-open'></i>
@@ -74,7 +74,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
             <li><a href="#">About us</a></li>
             <li><a href="#">Contact us</a></li>
         </ul>
-    </li>
+    </li> -->
     <li>
         <div class="iocn-link">
             <a href="#">
@@ -91,7 +91,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
             <li><a href="#">All booking</a></li>
         </ul>
     </li>
-    <li>
+    <!-- <li>
         <div class="iocn-link">
             <a href="#">
                 <i class='bx bx-bowl-hot'></i>
@@ -105,8 +105,8 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
             <li><a href="#">View</a></li>
 
         </ul>
-    </li>
-    <li>
+    </li> -->
+    <!-- <li>
         <div class="iocn-link">
             <a href="#">
                 <i class='bx bx-question-mark'></i>
@@ -119,8 +119,8 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
             <li><a href="#">Unread queries</a></li>
             <li><a href="#">read quries</a></li>
         </ul>
-    </li>
-    <li>
+    </li> -->
+    <!-- <li>
         <a href="#">
             <i class='bx bxs-calendar-event'></i>
             <span class="link_name">Event</span>
@@ -128,7 +128,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
         <ul class="sub-menu blank">
             <li><a class="link_name" href="#">Event</a></li>
         </ul>
-    </li>
+    </li> -->
     <!-- <li>
         <a href="#">
             <i class='bx bx-cog'></i>

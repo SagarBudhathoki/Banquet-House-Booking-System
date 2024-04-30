@@ -132,7 +132,7 @@ require '/xampp/htdocs/Banquet-house/connection/config.php';
 
             </div>
         </div>
-        <h1 class="credit">created by<span> GoFFy Guys</span> | all right reserved !</h1>
+        <h1 class="credit">created by<span> The Royal Pavilion</span> | all right reserved !</h1>
     </section>
 </body>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

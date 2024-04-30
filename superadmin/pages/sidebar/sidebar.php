@@ -32,7 +32,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
             <li><a href="../pending/index.php">Requests</a></li>
         </ul>
     </li>
-    <li>
+    <!-- <li>
         <div class="iocn-link">
             <a href="#">
                 <i class='bx bx-book-alt'></i>
@@ -46,7 +46,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
             <li><a href="">Manage Packages</a></li>
 
         </ul>
-    </li>
+    </li> -->
     <!-- <li>
         <div class="iocn-link">
             <a href="">

@@ -1,50 +1,211 @@
 <?php
 require '/xampp/htdocs/Banquet-house/connection/config.php';
-if (isset($_POST['upload'])) {
-    $file = $_FILES['image'];
-    $filename = $_FILES['image']['name'];
-    $file_tmp_name = $_FILES['image']['tmp_name'];
-    $filesize = $_FILES['image']['size'];
-    $fileerror = $_FILES['image']['error'];
-    $filetype = $_FILES['image']['type'];
-    $fileExt = explode('.', $filename);
-    $fileActualExt = strtolower(end($fileExt));
-    $allowed = array('jpg', 'jpeg', 'png');
-    if (in_array($fileActualExt, $allowed)) {
-        if ($fileerror === 0) {
-            if ($filesize < 200000000) {
-                $filenamenew = uniqid('', true) . "." . $fileActualExt;
-                $fileDestination = 'uploads/' . $filenamenew;
-                move_uploaded_file($file_tmp_name, $fileDestination);
-                $query = "INSERT INTO banquet values('','$filenamenew','7','ZETA House')";
-                mysqli_query($conn, $query);
-            } else {
-                echo "file is to big";
-            }
-        } else {
-            echo "There was an error uplading an file";
-        }
-    } else {
-        echo "you can not upload file of this type!";
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>complete responsive tour and travel agency website design tutorial</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/leaflet.markercluster.js"></script>
+
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="./style.css">
+
 </head>
 
 <body>
-    <form method="post" action="" enctype="multipart/form-data">
-        <input type="file" name="image">
-        <input type="submit" name="upload" value="upload">
-    </form>
 
+    <!-- header section starts  -->
+
+    <header>
+
+        <div id="menu-bar" class="fas fa-bars"></div>
+
+        <a href="#" class="logo"><span>BANQUET</span>HOUSE</a>
+
+        <nav class="navbar">
+            <!-- <a href="#home">home</a>
+            <a href="#book">book</a>
+            <a href="#packages">packages</a>
+            <a href="#services">services</a>
+            <a href="#gallery">gallery</a>
+            <a href="#review">review</a>
+            <a href="#contact">contact</a> -->
+        </nav>
+
+        <div class="icons">
+            <!-- <i class="fas fa-search" id="search-btn"></i> -->
+            <i class="fas fa-user" id="login-btn"></i>
+        </div>
+
+        <!-- <form action="" class="search-bar-container">
+            <input type="search" id="search-bar" placeholder="search here...">
+            <label for="search-bar" onclick="search()" class="fas fa-search"></label>
+        </form> -->
+
+    </header>
+
+    <!-- header section ends -->
+
+    <!-- login form container  -->
+
+    <div class="login-form-container">
+
+        <i class="fas fa-times" id="form-close"></i>
+
+        <!-- <form action="">
+            <h3>login</h3>
+            <input type="email" class="box" placeholder="enter your email">
+            <input type="password" class="box" placeholder="enter your password">
+            <input type="submit" value="login now" class="btn">
+            <input type="checkbox" id="remember">
+            <label for="remember">remember me</label>
+            <p>forget password? <a href="#">click here</a></p>
+            <p>don't have and account? <a href="#">register now</a></p>
+        </form> -->
+
+    </div>
+
+    <!-- home section starts  -->
+    <section class="packages" id="packages">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1 class="heading">
+            <span>V</span>
+            <span>E</span>
+            <span>n</span>
+            <span>u</span>
+            <span>e</span>
+        </h1>
+        <div class="box-container">
+            <?php
+            $type = mysqli_real_escape_string($conn, $_GET['type']);
+            $rows_per_page = 9;
+
+            if (!isset($_GET['page'])) {
+                $page = 1;
+            } else {
+                $page = $_GET['page'];
+            }
+
+            $start = ($page - 1) * $rows_per_page;
+            $query = "SELECT * FROM map JOIN banquet ON map.admin_id = banquet.admin_id WHERE banquet.status = 'active' AND banquet.type = '$type'";
+            $rows = mysqli_query($conn, $query);
+            $total_rows = mysqli_query($conn, "SELECT COUNT(*) as total FROM map JOIN banquet ON map.admin_id = banquet.admin_id WHERE banquet.status = 'active' AND banquet.type = '$type'");
+            $total_rows = mysqli_fetch_assoc($total_rows)['total'];
+            $total_pages = ceil($total_rows / $rows_per_page);
+            $count = mysqli_num_rows($rows);
+            if ($count > 0) {
+                foreach ($rows as $rows) :
+                    if ($rows['status'] !== 'pending' && $rows['status'] !== 'deactive') {
+
+                        $address_parts = explode(',', $rows['address']);
+                        $address = trim($address_parts[0]);
+                        $avg_rating_query = mysqli_query($conn, "SELECT AVG(rating) as average_rating FROM review WHERE admin_id = '{$rows['admin_id']}'");
+                        $avg_rating = mysqli_fetch_assoc($avg_rating_query)['average_rating'];
+            ?>
+                        <div class="box">
+                            <img src="../../user-admin/uploads/<?php echo $rows["image"]; ?>" alt="">
+                            <div class="content">
+                                <h3><?php echo $rows["banquetname"]; ?> <p><?php echo $rows["capacity"]; ?> Guests</p>
+                                </h3>
+
+                                <h3> <i class="fas fa-map-marker-alt"></i> <?php echo $address; ?></h3>
+                                <p><?php echo $rows["details"]; ?></p>
+
+                                <div class="stars">
+                                    <?php
+                                    // Show average rating as stars
+                                    $full_stars = floor($avg_rating);
+                                    $half_star = round($avg_rating - $full_stars, 1);
+                                    $empty_stars = 5 - $full_stars - $half_star;
+                                    for ($i = 0; $i < $full_stars; $i++) {
+                                        echo '<i class="fas fa-star"></i>';
+                                    }
+                                    if ($half_star == 0.5) {
+                                        echo '<i class="fas fa-star-half-alt"></i>';
+                                    }
+                                    for ($i = 0; $i < $empty_stars; $i++) {
+                                        echo '<i class="far fa-star"></i>';
+                                    }
+                                    ?>
+                                </div>
+                                <!-- <div class="price"> $90.00 <span>$120.00</span> </div> -->
+                                <a href="../../frontend/landingpage/home.php?page_id=<?php echo $rows["admin_id"]; ?>" class="btn">View
+                                    More</a>
+                            </div>
+                        </div>
+                <?php
+                    }
+
+                endforeach;
+            } else {
+                ?>
+                <img style="padding-left:32rem;" src="./images/errorresult.png">
+
+            <?php
+            }
+            ?>
+        </div>
+    </section>
+    <div class="pagination" style="margin-left:13rem; margin-bottom:10rem;">
+        <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+            <a href="?page=<?php echo $i; ?>&rows_per_page=<?php echo $rows_per_page; ?>" <?php if ($page == $i) : ?> class="active" <?php endif; ?>><?php echo $i; ?></a>
+        <?php endfor; ?>
+    </div>
+    <!-- footer section -->
+
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>about us</h3>
+                <p>>I am Sagar Budhathoki currently studying at Heral College Kathmandu.
+                    This is a platform where we can book a banquet house and its venue according to our purpose.
+                    I am very happy to intrtoduce my final year project as a booking system.</p>
+            </div>
+            <div class="box">
+                <h3>Avilabe Locations</h3>
+                <a href="#">Kathmandu</a>
+                <a href="#">Pokhara</a>
+                <a href="#">Dharan</a>
+                <a href="#">Dhankuta</a>
+
+            </div>
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#">Kathmandu</a>
+                <a href="#">Pokhara</a>
+                <a href="#">Dharan</a>
+                <a href="#">Dhankuta</a>
+
+            </div>
+            <div class="box">
+                <h3>follow us</h3>
+                <a href="#">facebook</a>
+                <a href="#">instagram</a>
+                <a href="#">Twitter</a>
+                <a href="#">github</a>
+
+            </div>
+        </div>
+        <h1 class="credit">created by<span>The Royal Pavilion</span> | all right reserved !</h1>
+    </section>
 </body>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 </html>
