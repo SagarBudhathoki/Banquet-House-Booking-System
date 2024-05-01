@@ -1,5 +1,5 @@
 <?php
-require '/programs/xampp/htdocs/banquethouses/connection/config.php';
+require '/xampp/htdocs/Banquet-house/connection/config.php';
 $admin_id = $_SESSION['admin_id'];
 if (!isset($admin_id)) {
     header('location:../../../login/index.php');
