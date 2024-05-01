@@ -20,7 +20,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
     </li>
     <li>
         <div class="iocn-link">
-            <!-- <a href="">
+            <a href="">
                 <i class='bx bx-collection'></i>
                 <span class="link_name">Services</span>
             </a>
@@ -28,8 +28,8 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
         </div>
         <ul class="sub-menu">
             <li><a class="link_name">Services</a></li>
-            <li><a href="#">Add services</a></li>
-            <li><a href="#">Manage services</a></li>
+            <li><a href="../services/addservice.php">Add services</a></li>
+            <li><a href="../services/manageservice.php">Manage services</a></li>
         </ul>
     </li>
     <li>
@@ -42,11 +42,11 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
         </div>
         <ul class="sub-menu">
             <li><a class="link_name" href="#">Package Manager</a></li>
-            <li><a href="#">Add Packages</a></li>
-            <li><a href="#">Manage Packages</a></li>
+            <li><a href="../PackageManager/addpackage.php">Add Packages</a></li>
+            <li><a href="../PackageManager/managepackage.php">Manage Packages</a></li>
 
         </ul>
-    </li> -->
+    </li>
     <li>
         <div class="iocn-link">
             <a href="">
@@ -57,11 +57,11 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
         </div>
         <ul class="sub-menu">
             <li><a class="link_name">Images</a></li>
-            <!-- <li><a href="#">Featured Images</a></li> -->
+            <li><a href="../featuredimage/fimages.php">Featured Images</a></li>
             <li><a href="../images/images.php">Gallary</a></li>
         </ul>
     </li>
-    <!-- <li>
+    <li>
         <div class="iocn-link">
             <a href="#">
                 <i class='bx bx-book-open'></i>
@@ -71,10 +71,10 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
         </div>
         <ul class="sub-menu">
             <li><a class="link_name" href="#">Pages</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Contact us</a></li>
+            <li><a href="../aboutus&contactus/aboutus.php">About us</a></li>
+            <li><a href="../aboutus&contactus/contactus.php">Contact us</a></li>
         </ul>
-    </li> -->
+    </li>
     <li>
         <div class="iocn-link">
             <a href="#">
@@ -86,12 +86,12 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
         <ul class="sub-menu">
             <li><a class="link_name" href="#">Booking</a></li>
             <li><a href="../Booking/pendingbooking.php">New Booking</a></li>
-            <li><a href="#">Approved Booking</a></li>
-            <li><a href="#">Cancelled booking</a></li>
-            <li><a href="#">All booking</a></li>
+            <li><a href="../Booking/approvedbooking.php">Approved Booking</a></li>
+            <li><a href="../Booking/cancelledbooking.php">Cancelled booking</a></li>
+            <li><a href="../Booking/newbooking.php">All booking</a></li>
         </ul>
     </li>
-    <!-- <li>
+    <li>
         <div class="iocn-link">
             <a href="#">
                 <i class='bx bx-bowl-hot'></i>
@@ -101,12 +101,12 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
         </div>
         <ul class="sub-menu">
             <li><a class="link_name" href="#">Food</a></li>
-            <li><a href="#">Add food</a></li>
-            <li><a href="#">View</a></li>
+            <li><a href="../Food/addfood.php">Add food</a></li>
+            <li><a href="../Food/view.php">View</a></li>
 
         </ul>
-    </li> -->
-    <!-- <li>
+    </li>
+    <li>
         <div class="iocn-link">
             <a href="#">
                 <i class='bx bx-question-mark'></i>
@@ -116,19 +116,19 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT name FROM user WHERE id =
         </div>
         <ul class="sub-menu">
             <li><a class="link_name" href="#">Queries</a></li>
-            <li><a href="#">Unread queries</a></li>
+            <li><a href="../queries/newqueries.php">Unread queries</a></li>
             <li><a href="#">read quries</a></li>
         </ul>
-    </li> -->
-    <!-- <li>
+    </li>
+    <li>
         <a href="#">
             <i class='bx bxs-calendar-event'></i>
             <span class="link_name">Event</span>
         </a>
         <ul class="sub-menu blank">
-            <li><a class="link_name" href="#">Event</a></li>
+            <li><a class="link_name" href="../calender/index.php">Event</a></li>
         </ul>
-    </li> -->
+    </li>
     <!-- <li>
         <a href="#">
             <i class='bx bx-cog'></i>
