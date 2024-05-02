@@ -1,5 +1,5 @@
 <?php
-include '../connection/config.php';
+include './connection/config.php';
 
 // Check if the user has granted permission to access their device's location
 if (isset($_GET['lat']) && isset($_GET['lng'])) {
