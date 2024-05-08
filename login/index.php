@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css" />
     <title>Sign in & Sign up Form</title>
 </head>
@@ -27,7 +28,7 @@
                         <input onkeyup="validate(this)" type="password" id="password" class="signin_input" placeholder="Password" required />
                     </div>
                     <!-- <a href="">Forget Password?</a> -->
-                    <button type="submit" class="btn solid">login</button>
+                    <button type="submit" id="signin_btn" class="btn solid">login</button>
 
                 </form>
 
@@ -50,7 +51,7 @@
                         <i class="fas fa-lock"></i>
                         <input onkeyup="validate(this)" type="password" id="confirm" placeholder="Confirm Password" />
                     </div>
-                    <input type="submit" class="btn" value="Sign up" />
+                    <input type="submit" id="signup_btn" class="btn" value="Sign up" />
 
                 </form>
             </div>

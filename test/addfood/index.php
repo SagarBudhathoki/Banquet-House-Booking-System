@@ -309,6 +309,7 @@ if (!empty($_SESSION['user_id']))
             <p>&copy; 2024 The Royal Pavilion . All Rights Reserved.</p>
         </div>
     </footer>
+    <script src="script.js"></script>
 </body>
 <script>
     let totalPriceString = "0.00"; // define totalPriceString outside of the change event listener

@@ -4,28 +4,36 @@ const sign_up_btn = document.querySelector("#sign-up-btn");
 const container = document.querySelector(".container");
 const signin_listener = document.querySelector(".signin_input");
 const signup_listener = document.querySelector(".signup_input");
+const signup_btn = document.querySelector("#signup_btn");
+const signin_btn = document.querySelector("#signin_btn");
 
 sign_up_btn.addEventListener("click", () => {
     container.classList.add("sign-up-mode");
-    submitData('signup');
 });
 
 sign_in_btn.addEventListener("click", () => {
     container.classList.remove("sign-up-mode");
+});
+
+signup_btn.addEventListener("click", () => {
+    submitData('signup');
+});
+
+signin_btn.addEventListener("click", () => {
     submitData('signin');
 });
 
 signin_listener.addEventListener("keyup", (event) => {
     if (event.key === "Enter") {
         event.preventDefault();
-        document.getElementById("sign-in-btn").click();
+        submitData('signin');
     }
 });
 
 signup_listener.addEventListener("keyup", (event) => {
     if (event.key === "Enter") {
         event.preventDefault();
-        document.getElementById("sign-up-btn").click();
+        submitData('signup');
     }
 });
 
