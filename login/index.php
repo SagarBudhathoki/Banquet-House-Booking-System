@@ -25,7 +25,7 @@
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input onkeyup="validate(this)" type="password" id="password" class="signin_input" placeholder="Password" required />
+                        <input type="password" id="password" class="signin_input" placeholder="Password" required />
                     </div>
                     <!-- <a href="">Forget Password?</a> -->
                     <button type="submit" id="signin_btn" class="btn solid">login</button>
@@ -87,6 +87,7 @@
         </div>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>
 </body>
 

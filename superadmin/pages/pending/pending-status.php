@@ -1,16 +1,17 @@
 <?php
 require '/xampp/htdocs/Banquet-house/connection/config.php';
-$admin_id = $_SESSION['admin_id'];
+$admin_id = $_SESSION['super_id'];
 
 if (!isset($admin_id)) {
     header('location:../../../login/index.php');
 }
 $id = $_GET['id'];
+$adminid = $_GET['adminid'];
 $qry = mysqli_query($conn, "SELECT banquet.id as requestid, banquet.*, user.*, map.*, banquet.type as banquettype
                             FROM banquet 
                             JOIN user ON user.id=banquet.admin_id 
                             JOIN map ON map.admin_id=banquet.admin_id 
-                            WHERE user.id=$id");
+                            WHERE user.id=$adminid");
 
 $result = mysqli_fetch_assoc($qry);
 
@@ -47,7 +48,7 @@ $result = mysqli_fetch_assoc($qry);
         <span class="detail-value"><?php echo $result['status'] ?></span>
     </div>
     <div class="action-buttons">
-        <button id="acceptBtn" onclick="acceptReservation(<?php echo $result['requestid'] ?>)">Accept</button>
-        <button id="rejectBtn" onclick="rejectReservation(<?php echo $result['requestid'] ?>)">Reject</button>
+        <button id="acceptBtn" onclick="acceptReservation('<?php echo $id ?>', '<?php echo $adminid ?>')">Accept</button>
+        <button id="rejectBtn" onclick="rejectReservation('<?php echo $id ?>', '<?php echo $adminid ?>')">Reject</button>
     </div>
 </div>

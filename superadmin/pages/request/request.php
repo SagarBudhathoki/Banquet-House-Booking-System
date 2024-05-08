@@ -20,13 +20,13 @@ if (!isset($_GET['page'])) {
 
 $start = ($page - 1) * $rows_per_page;
 
-$sql = "SELECT * FROM user 
-        JOIN banquet ON banquet.admin_id=user.id 
-        JOIN map ON map.admin_id=banquet.admin_id 
-        WHERE banquet.status IN ('active', 'deactive')
-        LIMIT $start, $rows_per_page";
+// $sql = "SELECT * FROM user 
+//         JOIN banquet ON banquet.admin_id=user.id 
+//         JOIN map ON map.admin_id=banquet.admin_id 
+//         WHERE banquet.status IN ('active', 'deactive')
+//         LIMIT $start, $rows_per_page";
 
-$rows = mysqli_query($conn, $sql);
+// $rows = mysqli_query($conn, $sql);
 
 $total_rows = mysqli_query($conn, "SELECT COUNT(*) as total FROM user JOIN banquet ON banquet.admin_id=user.id  JOIN map ON map.admin_id=banquet.admin_id   WHERE banquet.status IN ('active', 'deactive')");
 $total_rows = mysqli_fetch_assoc($total_rows)['total'];

@@ -42,10 +42,22 @@ if (isset($_GET['search'])) {
     LIMIT $start, $rows_per_page";
 } else {
     // If no search term was submitted, use the original query
-    $sql = "SELECT * FROM user JOIN banquet ON banquet.admin_id=user.id JOIN map ON map.admin_id=banquet.admin_id Where banquet.status='pending' LIMIT $start, $rows_per_page";
+    // $sql = "SELECT * FROM user JOIN banquet ON banquet.admin_id=user.id JOIN map ON map.admin_id=banquet.admin_id Where banquet.status='pending' LIMIT $start, $rows_per_page";
+    $sql = "SELECT
+            u.id as accept_admin_id,
+            u.name as name,
+            u.email as email,
+            b.id as admin_id,
+            b.banquetname as banquetname,
+            b.status as status,
+            m.city as city
+            FROM user AS u 
+            JOIN banquet AS b ON u.id = b.admin_id 
+            JOIN map AS m ON m.admin_id = b.admin_id 
+            WHERE b.status = 'pending'
+            LIMIT $start, $rows_per_page";
 }
 $rows = mysqli_query($conn, $sql);
-
 ?>
 
 <!DOCTYPE html>
@@ -82,7 +94,7 @@ $rows = mysqli_query($conn, $sql);
             </form>
             <div id="myModal" class="modal">
                 <div class="modal-content">
-                    <span class="close">&times;</span>
+                    <span class="close" onclick='document.getElementById("myModal").style.display = "none"'>&times;</span>
                     <p id="modal-content"></p>
                 </div>
             </div>
@@ -120,7 +132,7 @@ $rows = mysqli_query($conn, $sql);
                                 <button class="active-button" onclick="updateStatus('active', <?php echo $row['admin_id']; ?>)">Accept</button>
                                 <button class="deactive-button" onclick="updateStatus('deactive', <?php echo $row['admin_id']; ?>)">Reject</button>
                             </td> -->
-                            <td><button class="view-btn" onclick="openModal('<?php echo $row['admin_id']; ?>')">View</button></td>
+                            <td><button class="view-btn" onclick="openModal('<?php echo $row['admin_id']; ?>', '<?php echo $row['accept_admin_id']; ?>')">View</button></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -137,11 +149,8 @@ $rows = mysqli_query($conn, $sql);
             // Get the modal
             var modal = document.getElementById("myModal");
 
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
             // When the user clicks on the action link, open the modal
-            function openModal(id) {
+            function openModal(id, adminid) {
                 modal.style.display = "block";
                 // Make an AJAX request to fetch the details for the selected row
                 var xhr = new XMLHttpRequest();
@@ -151,13 +160,8 @@ $rows = mysqli_query($conn, $sql);
                         document.getElementById("modal-content").innerHTML = this.responseText;
                     }
                 };
-                xhr.open("GET", "pending-status.php?id=" + id, true);
+                xhr.open("GET", "pending-status.php?id=" + id + "&adminid=" + adminid, true);
                 xhr.send();
-            }
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-                modal.style.display = "none";
             }
 
             // When the user clicks anywhere outside of the modal, close it
@@ -182,7 +186,7 @@ $rows = mysqli_query($conn, $sql);
         </script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script>
-            function acceptReservation(requestid) {
+            function acceptReservation(requestid, adminid) {
                 var xhr = new XMLHttpRequest();
                 console.log(requestid);
                 xhr.onreadystatechange = function() {
@@ -201,11 +205,11 @@ $rows = mysqli_query($conn, $sql);
                         });
                     }
                 };
-                xhr.open('GET', `accept.php?id=${requestid}`);
+                xhr.open('GET', `accept.php?id=${requestid}&adminid=${adminid}`);
                 xhr.send();
             }
 
-            function rejectReservation(requestid) {
+            function rejectReservation(requestid, adminid) {
                 // code to reject reservation
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function() {
@@ -224,7 +228,7 @@ $rows = mysqli_query($conn, $sql);
                         });
                     }
                 };
-                xhr.open('GET', `reject.php?id=${requestid}`);
+                xhr.open('GET', `reject.php?id=${requestid}&adminid=${adminid}`);
                 xhr.send();
             }
         </script>

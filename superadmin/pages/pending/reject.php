@@ -1,6 +1,6 @@
 <?php
 require '/xampp/htdocs/Banquet-house/connection/config.php';
-$admin_id = $_SESSION['admin_id'];
+$admin_id = $_SESSION['super_id'];
 
 if (!isset($admin_id)) {
     header('location:../../../login/index.php');

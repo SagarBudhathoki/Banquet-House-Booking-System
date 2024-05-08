@@ -1,12 +1,12 @@
 <?php
 require '/xampp/htdocs/Banquet-house/connection/config.php';
 
-if (isset($_POST["action"])) {
-    if ($_POST["action"] == "signup") {
-        signup();
-    } else if ($_POST["action"] == "signin") {
-        signin();
-    }
+if (($_POST["action"] ?? null) == "signup") {
+    signup();
+} elseif (($_POST["action"] ?? null) == "signin") {
+    signin();
+} else {
+    return false;
 }
 
 // REGISTER
@@ -39,6 +39,7 @@ function signin()
     global $conn;
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, md5($_POST['password1']));
+
     $result = mysqli_query($conn, "SELECT * FROM user WHERE email= '$email'");
     $row = mysqli_fetch_assoc($result);
     if (mysqli_num_rows($result) > 0) {

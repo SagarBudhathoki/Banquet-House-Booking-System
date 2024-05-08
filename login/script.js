@@ -48,8 +48,7 @@ function submitData(action) {
             useremail: $("#useremail").val(),
             password1: $("#password").val(),
             password: $("#userpassword").val(),
-            confirm: $("#confirm").val(),
-
+            confirm: $("#confirm").val()
         };
         console.log(data);
         console.log(password);
@@ -72,12 +71,12 @@ function submitData(action) {
                     window.location.href =
                         "http://localhost/Banquet-house/superadmin/pages/dashboard/index.php";
                 } else if (response == "user not registered") {
-                    // alert(response);
+                    alert(response);
                 } else if (response == 1) {
-                    // alert(response);
+                    alert(response);
                     window.location.href = "index.php";
                 } else {
-                    // alert(response);
+                    alert(response);
                 }
             }
         });
