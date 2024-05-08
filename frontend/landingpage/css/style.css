@@ -227,7 +227,8 @@ html::-webkit-scrollbar-thumb {
     display: flex;
     text-align: center;
     justify-content: center;
-    padding: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .service .title h1 {

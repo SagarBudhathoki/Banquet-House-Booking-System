@@ -395,6 +395,8 @@ header .search-bar-container label:hover {
 
 .image-item:hover {
     opacity: 0.7;
+    cursor: pointer;
+    /* Smooth color transition */
     /* reduce opacity to 70% on hover */
 }
 

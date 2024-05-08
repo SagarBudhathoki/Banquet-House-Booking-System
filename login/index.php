@@ -20,14 +20,14 @@
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="email" id="email" placeholder="Email" required />
+                        <input onkeyup="validate(this)" type="email" id="email" class="signin_input" placeholder="Email" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" id="password" placeholder="Password" required />
+                        <input onkeyup="validate(this)" type="password" id="password" class="signin_input" placeholder="Password" required />
                     </div>
                     <!-- <a href="">Forget Password?</a> -->
-                    <button type="button" onclick="submitData('signin');" class="btn solid">login</button>
+                    <button type="submit" class="btn solid">login</button>
 
                 </form>
 
@@ -36,21 +36,21 @@
                     <h2 class="title">Sign up</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" id="username" placeholder="Username" required />
+                        <input onkeyup="validate(this)" type="text" id="username" placeholder="Username" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" id="useremail" placeholder="Email" required />
+                        <input onkeyup="validate(this)" type="email" id="useremail" class="signup_input" placeholder="Email" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" id="userpassword" placeholder="Password" required />
+                        <input onkeyup="validate(this)" type="password" id="userpassword" class="signup_input" placeholder="Password" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" id="confirm" placeholder="Confirm Password" />
+                        <input onkeyup="validate(this)" type="password" id="confirm" placeholder="Confirm Password" />
                     </div>
-                    <input type="submit" onclick="submitData('signup');" class="btn" value="Sign up" />
+                    <input type="submit" class="btn" value="Sign up" />
 
                 </form>
             </div>
@@ -86,8 +86,7 @@
         </div>
     </div>
 
-    <?php require 'script.php'; ?>
-    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

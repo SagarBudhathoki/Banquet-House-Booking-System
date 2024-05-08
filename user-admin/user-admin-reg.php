@@ -186,6 +186,7 @@ if (!isset($user_id)) {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
                     alert(xhr.responseText);
+                    window.location.href = "http://localhost/Banquet-house/frontend/mainpage/index.php";
                 } else {
                     console.log('Error: ' + xhr.status);
                 }
