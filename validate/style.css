@@ -1,0 +1,19 @@
+.errorTrack {
+    outline: 2px solid #ff4757;
+    border: none;
+}
+
+.successTrack {
+    outline: 2px solid #6ab04c;
+    border: none;
+}
+
+.successColor {
+    color: #6ab04c;
+}
+
+.errorColor {
+    color: #ff4757;
+    width: 50%;
+    margin: 0 auto;
+}

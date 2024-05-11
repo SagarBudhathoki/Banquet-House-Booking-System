@@ -20,25 +20,24 @@ function signup()
     $duplicate = mysqli_query($conn, "SELECT * FROM user WHERE name = '$name' OR email = '$email'");
     if (mysqli_num_rows($duplicate) > 0) {
         echo "username or email already taken";
-        exit;
     } else {
         if ($password == $confirm) {
             $query = "INSERT INTO user VALUES('','$name','$email','$password','user')";
             if (mysqli_query($conn, $query)) {
-                return 1;
+                echo "success";
             }
         } else {
             echo "password doesnot match";
-            exit;
         }
     }
+    exit;
 }
 // LOGIN
 function signin()
 {
     global $conn;
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, md5($_POST['password1']));
+    $password = mysqli_real_escape_string($conn, md5($_POST['password']));
 
     $result = mysqli_query($conn, "SELECT * FROM user WHERE email= '$email'");
     $row = mysqli_fetch_assoc($result);

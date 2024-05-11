@@ -21,6 +21,7 @@ if (!isset($user_id)) {
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <link rel="stylesheet" href="../frontend/mainpage/style.css">
+    <link rel="stylesheet" href="../validate/style.css">
 
 
     <title>Document</title>
@@ -75,7 +76,7 @@ if (!isset($user_id)) {
             </div>
             <div class="field">
                 <label for="contact-number">Contact Number:</label>
-                <input type="tel" id="contact-number" name="contact-number" required>
+                <input type="tel" onkeyup="validate(this)" id="contact-number" name="contact-number" class required>
             </div>
             <div class="field">
                 <label for="banquet-type">Banquet Type:</label>
@@ -160,6 +161,7 @@ if (!isset($user_id)) {
         </div>
         <h1 class="credit">created by<span> GoFFy Guys</span> | all right reserved !</h1>
     </section>
+    <script src="../validate/script.js"></script>
 </body>
 <script src="script.js">
 </script>

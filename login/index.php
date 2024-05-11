@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../validate/style.css" />
     <title>Sign in & Sign up Form</title>
 </head>
 
@@ -16,25 +16,25 @@
             <div class="signin-signup">
                 <!-- sigin form starts here -->
 
-                <form action="" autocomplete="off" method="post" class="sign-in-form">
-                    <input type="hidden" id="action" value="signin">
-                    <h2 class="title">Sign in</h2>
-                    <div class="input-field">
+                <form class="sign-in-form" id="signInForm" autocomplete="off">
+                    <h2 class="title">Sign In</h2>
+                    <div id="newTxt" class="comments"></div>
+                    <div class="input-field emailDiv">
                         <i class="fas fa-user"></i>
-                        <input onkeyup="validate(this)" type="email" id="email" class="signin_input" placeholder="Email" required />
+                        <input type="text" placeholder="Email" id="userEmail" />
                     </div>
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" id="password" class="signin_input" placeholder="Password" required />
-                    </div>
-                    <!-- <a href="">Forget Password?</a> -->
-                    <button type="submit" id="signin_btn" class="btn solid">login</button>
 
+                    <div class="input-field passwordDiv">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" id="userPassword" />
+                    </div>
+                    <input type="submit" value="Login" class="btn solid" />
                 </form>
 
                 <!-- siginup form ends here -->
-                <form action="" autocomplete="off" method="post" class="sign-up-form">
+                <form action="" autocomplete="off" method="post" id="register" class="sign-up-form">
                     <h2 class="title">Sign up</h2>
+                    <div id="comment" class="comments errorColor"></div>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
                         <input onkeyup="validate(this)" type="text" id="username" placeholder="Username" required />
@@ -51,7 +51,7 @@
                         <i class="fas fa-lock"></i>
                         <input onkeyup="validate(this)" type="password" id="confirm" placeholder="Confirm Password" />
                     </div>
-                    <input type="submit" id="signup_btn" class="btn" value="Sign up" />
+                    <input type="submit" class="btn" value="Sign up" />
 
                 </form>
             </div>
@@ -86,9 +86,10 @@
             </div>
         </div>
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
+    <script src="../validate/script.js"></script>
+
 </body>
 
 </html>

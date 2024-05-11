@@ -7,7 +7,12 @@ if (!isset($admin_id)) {
 }
 $id = $_GET['id'];
 $adminid = $_GET['adminid'];
-$query = "UPDATE banquet SET status ='active' where id=$id";
+$reservation_cost = $_GET['reservation_cost'];
+
+echo "<pre>";
+print_r($adminid);
+echo "</pre>";
+$query = "UPDATE `banquet` SET `status` = 'active', `reservation_cost` = $reservation_cost where `id` = $id";
 if (mysqli_query($conn, $query)) {
     $query = "UPDATE user SET type = 'admin' where id=$adminid";
     mysqli_query($conn, $query);

@@ -47,3 +47,20 @@ searchControl.on("markgeocode", function (e) {
     document.getElementById("longitude").value = e.geocode.center.lng;
     document.getElementById("address").value = e.geocode.name;
 });
+
+
+// Get the input element
+var input = document.getElementById("capacity");
+
+// Add an event listener to listen for input changes
+input.addEventListener("input", function () {
+    // Get the value entered by the user
+    var value = parseInt(input.value);
+
+    // Check if the value is negative
+    if (value < 0) {
+        // If it's negative, set the input value to 0
+        input.value = 0;
+    }
+});
+

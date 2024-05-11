@@ -50,6 +50,7 @@ if (isset($_GET['search'])) {
             b.id as admin_id,
             b.banquetname as banquetname,
             b.status as status,
+            b.reservation_cost,
             m.city as city
             FROM user AS u 
             JOIN banquet AS b ON u.id = b.admin_id 
@@ -132,7 +133,7 @@ $rows = mysqli_query($conn, $sql);
                                 <button class="active-button" onclick="updateStatus('active', <?php echo $row['admin_id']; ?>)">Accept</button>
                                 <button class="deactive-button" onclick="updateStatus('deactive', <?php echo $row['admin_id']; ?>)">Reject</button>
                             </td> -->
-                            <td><button class="view-btn" onclick="openModal('<?php echo $row['admin_id']; ?>', '<?php echo $row['accept_admin_id']; ?>')">View</button></td>
+                            <td><button class="view-btn" onclick="openModal('<?php echo $row['admin_id']; ?>', '<?php echo $row['accept_admin_id']; ?>', '<?php echo $row['reservation_cost']; ?>')">View</button></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -150,7 +151,7 @@ $rows = mysqli_query($conn, $sql);
             var modal = document.getElementById("myModal");
 
             // When the user clicks on the action link, open the modal
-            function openModal(id, adminid) {
+            function openModal(id, adminid, reservation_cost) {
                 modal.style.display = "block";
                 // Make an AJAX request to fetch the details for the selected row
                 var xhr = new XMLHttpRequest();
@@ -160,7 +161,7 @@ $rows = mysqli_query($conn, $sql);
                         document.getElementById("modal-content").innerHTML = this.responseText;
                     }
                 };
-                xhr.open("GET", "pending-status.php?id=" + id + "&adminid=" + adminid, true);
+                xhr.open("GET", "pending-status.php?id=" + id + "&adminid=" + adminid + "&reservation_cost=" + reservation_cost, true);
                 xhr.send();
             }
 
@@ -186,7 +187,7 @@ $rows = mysqli_query($conn, $sql);
         </script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script>
-            function acceptReservation(requestid, adminid) {
+            function acceptReservation(requestid, adminid, reservation_cost) {
                 var xhr = new XMLHttpRequest();
                 console.log(requestid);
                 xhr.onreadystatechange = function() {
@@ -205,11 +206,11 @@ $rows = mysqli_query($conn, $sql);
                         });
                     }
                 };
-                xhr.open('GET', `accept.php?id=${requestid}&adminid=${adminid}`);
+                xhr.open('GET', `accept.php?id=${requestid}&adminid=${adminid}&reservation_cost=${reservation_cost}`);
                 xhr.send();
             }
 
-            function rejectReservation(requestid, adminid) {
+            function rejectReservation(requestid, adminid, reservation_cost) {
                 // code to reject reservation
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function() {
@@ -228,7 +229,7 @@ $rows = mysqli_query($conn, $sql);
                         });
                     }
                 };
-                xhr.open('GET', `reject.php?id=${requestid}&adminid=${adminid}`);
+                xhr.open('GET', `reject.php?id=${requestid}&adminid=${adminid}&reservation_cost=${reservation_cost}`);
                 xhr.send();
             }
         </script>
