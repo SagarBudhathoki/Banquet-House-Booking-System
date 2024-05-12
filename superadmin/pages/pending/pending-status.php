@@ -7,6 +7,7 @@ if (!isset($admin_id)) {
 }
 $id = $_GET['id'];
 $adminid = $_GET['adminid'];
+$registration_cost = $_GET['cost'];
 $qry = mysqli_query($conn, "SELECT banquet.id as requestid, banquet.*, user.*, map.*, banquet.type as banquettype
                             FROM banquet 
                             JOIN user ON user.id=banquet.admin_id 
@@ -48,7 +49,7 @@ $result = mysqli_fetch_assoc($qry);
         <span class="detail-value"><?php echo $result['status'] ?></span>
     </div>
     <div class="action-buttons">
-        <button id="acceptBtn" onclick="acceptReservation('<?php echo $id ?>', '<?php echo $adminid ?>')">Accept</button>
-        <button id="rejectBtn" onclick="rejectReservation('<?php echo $id ?>', '<?php echo $adminid ?>')">Reject</button>
+        <button id="acceptBtn" onclick="acceptReservation('<?php echo $id ?>', '<?php echo $adminid ?>' , '<?php echo $registration_cost; ?>')">Accept</button>
+        <button id="rejectBtn" onclick="rejectReservation('<?php echo $id ?>', '<?php echo $adminid ?>' , '<?php echo $registration_cost; ?>')">Reject</button>
     </div>
 </div>

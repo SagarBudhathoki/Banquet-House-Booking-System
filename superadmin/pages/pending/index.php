@@ -135,7 +135,8 @@ $rows = mysqli_query($conn, $sql);
                             </td> -->
                             <td><button class="view-btn" onclick="openModal('<?php echo $row['admin_id']; ?>', '<?php echo $row['accept_admin_id']; ?>', '<?php echo $row['reservation_cost']; ?>')">View</button></td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php
+                    endforeach; ?>
                 </tbody>
             </table>
 
@@ -161,7 +162,7 @@ $rows = mysqli_query($conn, $sql);
                         document.getElementById("modal-content").innerHTML = this.responseText;
                     }
                 };
-                xhr.open("GET", "pending-status.php?id=" + id + "&adminid=" + adminid + "&reservation_cost=" + reservation_cost, true);
+                xhr.open("GET", "pending-status.php?id=" + id + "&adminid=" + adminid + "&cost=" + reservation_cost, true);
                 xhr.send();
             }
 
@@ -206,7 +207,7 @@ $rows = mysqli_query($conn, $sql);
                         });
                     }
                 };
-                xhr.open('GET', `accept.php?id=${requestid}&adminid=${adminid}&reservation_cost=${reservation_cost}`);
+                xhr.open('GET', `accept.php?id=${requestid}&adminid=${adminid}&cost=${reservation_cost}`);
                 xhr.send();
             }
 
@@ -229,7 +230,7 @@ $rows = mysqli_query($conn, $sql);
                         });
                     }
                 };
-                xhr.open('GET', `reject.php?id=${requestid}&adminid=${adminid}&reservation_cost=${reservation_cost}`);
+                xhr.open('GET', `reject.php?id=${requestid}&adminid=${adminid}&cost=${reservation_cost}`);
                 xhr.send();
             }
         </script>

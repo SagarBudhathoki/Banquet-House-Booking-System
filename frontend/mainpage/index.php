@@ -15,6 +15,7 @@ require '/xampp/htdocs/Banquet-house/connection/config.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/leaflet.markercluster.js"></script>
+    <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- font awesome cdn link  -->
@@ -98,7 +99,20 @@ require '/xampp/htdocs/Banquet-house/connection/config.php';
         <div class="video-container">
             <video src="images/vid-2.mp4" id="video-slider" loop autoplay muted></video>
         </div>
-
+        <?php
+        $user_id = $_SESSION['user_id'] ?? 0;
+        $count = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `reservation` where `user_id`='" . $user_id . "' and `status`='accepted'"));
+        if ($count > 0) :
+        ?>
+            <div id="pay-container">
+                <center>
+                    <div id="pay-content">Your reservation has been accepted</div>
+                    <button id="payment-button">Pay with <img src="../khalti-pay/khalti.png" alt="khalti" width="100"></button>
+                </center>
+            </div>
+        <?php
+        endif;
+        ?>
     </section>
     <!-- user profile -->
     <?php if (isset($_SESSION['user_id'])) {
@@ -320,6 +334,57 @@ require '/xampp/htdocs/Banquet-house/connection/config.php';
 
     <!-- custom js file link  -->
     <script src="script.js"></script>
+    <script>
+        var config = {
+            // replace the publicKey with yours
+            "publicKey": "test_public_key_94eaee831e1e4036be08c2a418230b6a",
+            "productIdentity": "1234567890",
+            "productName": "Payment",
+            "productUrl": "http://localhost/Banquet-house/frontend/mainpage/index.php",
+            "paymentPreference": [
+                "KHALTI",
+                "EBANKING",
+                "MOBILE_BANKING",
+                "CONNECT_IPS",
+                "SCT",
+            ],
+            "eventHandler": {
+                onSuccess(payload) {
+                    // hit merchant api for initiating verfication
+                    console.log(payload);
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '../khalti-pay/pay.php');
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            if (xhr.responseText == "success") {
+                                alert("Payment Successful");
+                                window.location.href = "http://localhost/Banquet-house/frontend/mainpage/index.php";
+                            } else if (xhr.responseText == "failed") {
+                                alert("Payment Failed");
+                            }
+                        }
+                    };
+                    xhr.send('token=' + encodeURIComponent(payload.token) + '&id=' + <?= $_SESSION['user_id'] ?>);
+                },
+                onError(error) {
+                    console.log(error);
+                },
+                onClose() {
+                    console.log('widget is closing');
+                }
+            }
+        };
+
+        var checkout = new KhaltiCheckout(config);
+        var btn = document.getElementById("payment-button");
+        btn.onclick = function() {
+            // minimum transaction amount must be 10, i.e 1000 in paisa.
+            checkout.show({
+                amount: 1000
+            });
+        }
+    </script>
     <script>
         function toggleProfileModal() {
             // Check if the user is logged in

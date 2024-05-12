@@ -976,3 +976,35 @@ header .search-bar-container label:hover {
 .profile-edit:hover {
     background-color: #0062cc;
 }
+
+#payment-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-weight: bolder;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+
+#payment-button:hover {
+    border: 2px solid green;
+}
+
+#pay-container {
+    position: fixed;
+    top: 725px;
+    left: 1200px;
+    z-index: 100;
+    border-radius: 10px;
+    background-color: #FFC55A;
+    padding: 13px;
+    color: darkgreen;
+    font-weight: bolder;
+    font-size: 20px;
+}

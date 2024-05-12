@@ -119,7 +119,7 @@ if (!isset($user_id)) {
             </div>
             <div class="field">
                 <label for="detail">Banquet reservation cost:</label>
-                <input type="number" id="cost" name="cost" placeholder="reservation cost" required>
+                <input type="number" id="cost" name="cost" placeholder="reservation cost" required />
             </div>
             <div class="submit">
                 <button type="submit" id="submit">Submit</button>
@@ -178,7 +178,7 @@ if (!isset($user_id)) {
         var address = document.getElementById('address').value;
         var detail = document.getElementById('detail').value;
         var fileInput = document.getElementById('file-input');
-        var cost = document.getElementById('cost');
+        var cost = document.getElementById('cost').value;
         if (address === '' || detail === '') {
             alert('Please enter both address and detail');
             return;
