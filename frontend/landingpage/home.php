@@ -280,21 +280,92 @@ if (!empty($_SESSION['user_id']))
         <div class="review-title">
             <h3>Client's <span>Review</span> </h3>
         </div>
+        <div class="swiper review-slider">
+            <div class="swiper-wrapper review-wrapper">
+                <?php
+                $result = mysqli_query($conn, "SELECT user.name,review.user_id, review.comment, review.rating
+                FROM review 
+                JOIN user ON review.user_id = user.id  
+                WHERE review.admin_id = $id
+                ");
+                while ($row = mysqli_fetch_assoc($result)) :
+                    $profile_id = $row['user_id'];
+                    $profileresult = mysqli_fetch_assoc(mysqli_query($conn, "SELECT *  FROM profile where user_id=$profile_id"));
+                ?>
+                    <div class="swiper-slide box">
+                        <?php
+                        if (empty($profileresult['profile'])) {
+                        ?>
+                            <img src="../../profileimage/no-user-profile-picture-24185395.jpg">
+                        <?php
+                        } else {
 
+                        ?>
+                            <img src="../../profileimage/<?php echo $profileresult['profile']; ?>">
+                        <?php
+                        }
 
-        </div>
+                        ?>
+
+                        <p>
+                            <?php echo $row['comment']; ?>
+                        </p>
+                        <h3>
+                            <?php echo $row['name']; ?>
+                        </h3>
+                        <div class="stars">
+                            <?php
+                            if ($row['rating'] == 5) {
+                                echo '<i class="fas fa-solid fa-star"></i>';
+                                echo '<i class="fas fa-solid fa-star"></i>';
+                                echo '<i class="fas fa-solid fa-star"></i>';
+                                echo '<i class="fas fa-solid fa-star"></i>';
+                                echo '<i class="fas fa-solid fa-star"></i>';
+                            } else if ($row['rating'] == 4) {
+
+                                echo '<i class="fas fa-solid fa-star"></i>';
+                                echo '<i class="fas fa-solid fa-star"></i>';
+                                echo '<i class="fas fa-solid fa-star"></i>';
+                                echo '<i class="fas fa-solid fa-star"></i>';
+                                echo ' <i class="fa-sharp fa-regular fa-star"></i>';
+                            } else if ($row['rating'] == 3) {
+                                echo '<i class="fas fa-solid fa-star"></i>';
+                                echo '<i class="fas fa-solid fa-star"></i>';
+                                echo '<i class="fas fa-solid fa-star"></i>';
+                                echo ' <i class="fa-sharp fa-regular fa-star"></i>';
+                                echo ' <i class="fa-sharp fa-regular fa-star"></i>';
+                            } else if ($row['rating'] == 2) {
+                                echo '<i class="fas fa-solid fa-star"></i>';
+                                echo '<i class="fas fa-solid fa-star"></i>';
+                                echo ' <i class="fa-sharp fa-regular fa-star"></i>';
+                                echo ' <i class="fa-sharp fa-regular fa-star"></i>';
+                            } else {
+                                echo '<i class="fas fa-solid fa-star"></i>';
+                                echo ' <i class="fa-sharp fa-regular fa-star"></i>';
+                                echo ' <i class="fa-sharp fa-regular fa-star"></i>';
+                                echo ' <i class="fa-sharp fa-regular fa-star"></i>';
+                                echo ' <i class="fa-sharp fa-regular fa-star"></i>';
+                            }
+
+                            ?>
+                        </div>
+                    </div>
+                <?php
+                endwhile;
+                ?>
+            </div>
         </div>
     </section>
 
     <!-- review section ends here -->
     <!-- add review section -->
-    <!-- <section id="addreview">
+    <section id="addreview">
         <button id="add-review-btn">Add Review</button>
 
         <div id="modal" class="hidden">
             <div class="modal-content">
-                <span class="close">&times;</span> -->
-    <!-- <form>
+                <span class="close">&times;</span>
+                <form>
                     <h2>Add <span style="color:#007aff;">Review</span></h2>
                     <textarea id="review-body" placeholder="Add your review here ..." name="review-body" maxlength="100" rows="2" style="text-align: center;"></textarea><br>
                     <h3> <label for="review-rating" style="color:#007aff;">Rating</label></h3>
@@ -306,11 +377,11 @@ if (!empty($_SESSION['user_id']))
                         <input type="radio" id="rating-1" value="1" name="rating"><label for="rating-1"><i class="fas fa-star"></i></label>
                     </div>
                     <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
-                </form> -->
-    <!-- </div>
-    </div> -->
+                </form>
+            </div>
+        </div>
 
-    <div id="overlay" class="hidden"></div>
+        <div id="overlay" class="hidden"></div>
     </section>
     <!-- add review section ends here -->
     <section class="service" id="contactus">
@@ -328,18 +399,36 @@ if (!empty($_SESSION['user_id']))
                     if (!empty($user_id)) {
                         $userinfo = mysqli_query($conn, "SELECT * FROM user where id=$user_id ");
                         $userresult = mysqli_fetch_assoc($userinfo);
+                    }
+                    if (empty($user_id)) {
+                    ?>
+                        <input type="text" id="name" name="name" placeholder="Enter Your Name">
+                    <?php
                     } else {
                     ?>
                         <input type="text" id="name" name="name" placeholder="Enter Your Name" value="<?php echo strtolower($userresult['name']); ?>">
                     <?php
                     } ?>
                 </div>
-
+                <div class="form-group">
+                    <?php if (empty($user_id)) { ?>
+                        <input type="email" id="email" name="email" placeholder="Enter Your Email">
+                    <?php } else { ?>
+                        <input type="email" id="email" name="email" placeholder="Enter Your Email" value="<?php echo $userresult['email']; ?>">
+                    <?php
+                    }
+                    ?>
+                </div>
                 <div class="form-group">
                     <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" require>
                 </div>
+                <div class="form-group">
+                    <textarea id="text-message" name="message" placeholder="Your message .." required></textarea>
+                </div>
+                <div class="g-recaptcha" data-sitekey="6LehVfUkAAAAAGXkj2NXTYLFVuJDJT0NPKYIj7Xf"></div>
 
-
+                <input type="hidden" id="page-id" name="page_id" value="YOUR_PAGE_ID">
+                <button type="submit" id="bird"><i class="fa-sharp fa-solid fa-paper-plane"></i></button>
             </form>
         </div>
         <div class="map-container" id="map">
